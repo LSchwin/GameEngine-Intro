@@ -36,7 +36,7 @@ namespace assets
         },
         Color{  0.7f, 0.1f, 0.1f  }
     };
-	Model playerModel{ std::vector<Mesh>{ meshPlayer, meshPlayer2, meshPlayer3 } };
+	std::shared_ptr<Model> playerModel = std::make_shared<Model>( std::vector<Mesh>{ meshPlayer, meshPlayer2, meshPlayer3 } );
 
 
     Mesh meshEnemy{
@@ -71,7 +71,7 @@ namespace assets
         },
         Color{  30.0f, 0.1f, 0.1f  }
     };
-    Model enemyModel{ std::vector<Mesh>{ meshEnemy, meshEnemy2, meshEnemy3 } };
+    std::shared_ptr<Model> enemyModel = std::make_shared<Model>( std::vector<Mesh>{ meshEnemy, meshEnemy2, meshEnemy3 } );
 
 
     Mesh bulletMesh{
@@ -83,7 +83,7 @@ namespace assets
         },
     Color{ 1.0f, 0.0f, 0.0f }
     };
-    Model bulletModel{ std::vector<Mesh>{ bulletMesh } };
+    std::shared_ptr<Model> bulletModel = std::make_shared<Model>( std::vector<Mesh>{ bulletMesh } );
 
 
     Mesh bombMesh{
@@ -96,7 +96,7 @@ namespace assets
         },
     Color{ 1.0f, 0.0f, 30.0f }
     };
-    Model bombModel{ std::vector<Mesh>{ bombMesh } };
+    std::shared_ptr<Model> bombModel = std::make_shared<Model>( std::vector<Mesh>{ bombMesh } );
 
 
 
@@ -125,7 +125,7 @@ namespace assets
         },
     Color{ 1.0f, 0.0f, 30.0f }
     };
-    Model bombExplosionModel{ std::vector<Mesh>{ bombExplosionMesh } };
+    std::shared_ptr<Model> bombExplosionModel = std::make_shared<Model>( std::vector<Mesh>{ bombExplosionMesh } );
 
     Mesh AmmoPickupMesh{
     {
@@ -137,5 +137,5 @@ namespace assets
         },
     Color{ 1.0f, 30.0f, 30.0f }
     };
-    Model AmmoPickupModel{ std::vector<Mesh>{ AmmoPickupMesh } };
+    std::shared_ptr<Model> AmmoPickupModel = std::make_shared<Model>( std::vector<Mesh>{ AmmoPickupMesh } );
 }

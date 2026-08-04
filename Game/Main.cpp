@@ -15,9 +15,78 @@
 
 using namespace nu;
 
+class Object
+{
+public:
+    Object() { std::cout << "constructor\n"; }
+    ~Object() { std::cout << "destructor\n"; }
+
+    Object(const Object& object) { std::cout << "copy\n"; }
+    Object& operator = (const Object& object) { std::cout << "assignment\n"; return *this; }
+};
 
 int main()
 {
+    std::cout << "============object============\n";
+    {
+        Object objectA;
+        Object objectB = objectA;
+        Object objectC;
+        objectC = objectA;
+
+    }
+
+    std::cout << "============raw pointers============\n";
+    {
+        Object* objectA = new Object();
+        std::cout << objectA << std::endl;
+
+        Object* objectB = new Object(*objectA);
+        std::cout << objectB << std::endl;
+
+        Object* objectC = nullptr;
+        objectC = objectA;
+        std::cout << objectC << std::endl;
+
+        delete objectA;
+        delete objectB;
+    }
+
+    std::cout << "============unique pointers============\n";
+    {
+        std::unique_ptr<Object> objectA = std::make_unique<Object>();
+        std::cout << objectA.get() << std::endl;
+
+        std::unique_ptr<Object> objectB;
+        objectB = std::move(objectA);
+        std::cout << objectB.get() << std::endl;
+
+        objectB.reset();
+    }
+
+    std::cout << "============shared pointers============\n";
+    std::shared_ptr<Object> objectC;
+    {
+        std::shared_ptr<Object> objectA = std::make_shared<Object>();
+        std::cout << objectA.get() << std::endl;
+        std::cout << objectA.use_count() << std::endl;
+        auto objectB = objectA;
+        std::cout << objectB.get() << std::endl;
+        std::cout << objectB.use_count() << std::endl;
+        objectC = objectA;
+        std::cout << objectC.get() << std::endl;
+        std::cout << objectC.use_count() << std::endl;
+
+    }
+    std::cout << objectC.use_count() << std::endl;
+
+
+    //return 0; //testing
+
+
+
+
+
     SetWorkingDirectory("assets");
     // INITIALIZATION
     Engine::Get().Initialize();
@@ -26,6 +95,12 @@ int main()
 
     //SpaceGame game;
     //game.Initialize();
+
+
+    // create texture, using shared_ptr so texture can be shared
+    std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+    texture->Load("textures/chicken-jockey.png", Engine::Get().GetRenderer());
+    
 
     // MAIN LOOP
     bool quit = false;
@@ -53,6 +128,10 @@ int main()
         SpaceGame::Get().Draw(Engine::Get().GetRenderer());
 
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
+
+
+        Engine::Get().GetRenderer().DrawTexture(texture.get(), 30, 30); //test code
+
 
         Engine::Get().GetRenderer().Present(); // Render the screen
     }

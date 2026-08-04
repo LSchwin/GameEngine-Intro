@@ -18,18 +18,6 @@ public:
         m_speed{ enemyDesc.speed }
     {}
 
-    Enemy(float speed, const nu::Transform& transform) :
-        Actor{ transform },
-        m_speed{ speed }
-    {
-    }
-
-    Enemy(float speed, const nu::Transform& transform, const nu::Model& mesh) :
-        Actor{ transform, mesh },
-        m_speed{ speed }
-    {
-    }
-
     void Update(float dt) override;
     void OnCollision(Actor* other) override;
     void Draw(const class nu::Renderer& renderer) const override;

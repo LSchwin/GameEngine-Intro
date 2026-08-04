@@ -16,20 +16,7 @@ public:
     Bullet(const BulletDesc& BulletDesc) :
         Actor{ BulletDesc },
         m_speed{ BulletDesc.speed }
-    {
-    }
-
-    Bullet(float speed, const nu::Transform& transform) :
-        Actor{ transform },
-        m_speed{ speed }
-    {
-    }
-
-    Bullet(float speed, const nu::Transform& transform, const nu::Model& mesh) :
-        Actor{ transform, mesh },
-        m_speed{ speed }
-    {
-    }
+    {}
 
     void Update(float dt) override;
     //void Draw(const class nu::Renderer& renderer) const override;

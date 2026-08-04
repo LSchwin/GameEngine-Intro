@@ -15,6 +15,7 @@
 #include "File.h"
 #include "Audio.h"
 #include "ParticleSystem.h"
+#include "Texture.h"
 
 // framework
 #include "Actor.h"
