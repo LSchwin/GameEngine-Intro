@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Assets.h"
+#include <memory>
 
 using namespace nu;
 
@@ -21,18 +22,18 @@ bool SpaceGame::Initialize()
 
     nu::Engine::Get().GetAudio().PlaySound("MusicLoop");
 
-    m_gameFont = new Font();
-    m_gameFont->Load("fonts/Tildunk.ttf", 32);
+    //Resources().Get<Texture>("textures/player.png", Engine::Get().GetRenderer());
 
-    m_titleFont = new Font();
-    m_titleFont->Load("fonts/Tildunk.ttf", 64); //here is where you set the font size
 
-    m_titleText = new Text(m_titleFont);
+    //m_titleFont = Resources().Get<Font>("fonts/Tildunk.ttf", 64.0f);
+    m_titleText = new Text(Resources().GetWithID<Font>("title_font", "fonts/Tildunk.ttf", 64.0f)); //get with ID
     m_titleText->Create(Engine::Get().GetRenderer(), "SPAAAAAAAACE", Color{ 1.0f, 1.0f, 1.0f });
 
-    m_scoreText = new Text(m_gameFont);
-    m_livesText = new Text(m_gameFont);
-    m_enemyText = new Text(m_gameFont);
+    m_gameFont = Resources().GetWithID<Font>("game_font", "fonts/Tildunk.ttf", 32.0f);
+
+    m_scoreText = new Text(Resources().GetWithID<Font>("game_font", "fonts/Tildunk.ttf", 32.0f)); //get with id
+    m_livesText = new Text(Resources().GetWithID<Font>("game_font", "fonts/Tildunk.ttf", 32.0f)); //get with id
+    m_enemyText = new Text(Resources().GetWithID<Font>("game_font", "fonts/Tildunk.ttf", 32.0f)); //get with id
 
     return true;
 }

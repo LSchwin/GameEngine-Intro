@@ -49,7 +49,6 @@ namespace nu
 
 		ParticleSystem& GetPS() { return m_particleSystem; }
 
-
 	private:
 		Engine() = default;
 

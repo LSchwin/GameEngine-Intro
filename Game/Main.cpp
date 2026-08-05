@@ -98,8 +98,8 @@ int main()
 
 
     // create texture, using shared_ptr so texture can be shared
-    std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-    texture->Load("textures/chicken-jockey.png", Engine::Get().GetRenderer());
+    //std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+    //texture->Load("textures/chicken-jockey.png", Engine::Get().GetRenderer());
     
 
     // MAIN LOOP
@@ -130,7 +130,7 @@ int main()
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
 
-        Engine::Get().GetRenderer().DrawTexture(texture.get(), 30, 30); //test code
+        Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("textures/chicken-jockey.png", Engine::Get().GetRenderer()), 30, 30, 45.0f); //test code
 
 
         Engine::Get().GetRenderer().Present(); // Render the screen
