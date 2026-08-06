@@ -23,7 +23,7 @@ public:
 
     void OnCollision(Actor* other) override;
 
-    //void Draw(const class nu::Renderer& renderer) const override;
+    void Draw(const class nu::Renderer& renderer) const override;
 
 private:
     float m_speed = 800.0f;

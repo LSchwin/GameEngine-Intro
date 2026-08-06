@@ -7,6 +7,9 @@
 #include "Bomb.h"
 #include "AmmoPickup.h"
 
+#include "Texture.h"
+#include "ResourceManager.h"
+
 void Player::Update(float dt)
 {
 
@@ -33,8 +36,10 @@ void Player::Update(float dt)
         BulletDesc desc;
         desc.name = "Bullet";
         desc.tag = "PlayerBullet";
-        desc.model = assets::bulletModel;
+        //desc.model = assets::bulletModel;
+        desc.texture = nu::Resources().Get<nu::Texture>("textures/bullet.png", nu::Engine::Get().GetRenderer());
         desc.transform = m_transform;
+        desc.transform.scale = 2.0f;
         desc.speed = 4000.0f;
         desc.lifespan = 0.25f;
 
@@ -49,8 +54,10 @@ void Player::Update(float dt)
         BombDesc desc;
         desc.name = "Bullet";
         desc.tag = "PlayerBomb";
-        desc.model = assets::bombModel;
+        //desc.model = assets::bombModel;
+        desc.texture = nu::Resources().Get<nu::Texture>("textures/bomb.png", nu::Engine::Get().GetRenderer());
         desc.transform = m_transform;
+        desc.transform.scale = 2.0f;
         desc.speed = 6000.0f;
         desc.lifespan = 2.0f;
 
@@ -104,6 +111,8 @@ void Player::OnCollision(Actor* other)
 
 void Player::Draw(const nu::Renderer& renderer) const
 {
+
+
     switch (SpaceGame::Get().m_gameState)
     {
     case SpaceGame::GameState::Title:
@@ -120,5 +129,17 @@ void Player::Draw(const nu::Renderer& renderer) const
         break;
     }
 
-	Actor::Draw(renderer);
+
+    if (m_model)
+    {
+        renderer.DrawModel(*m_model, m_transform);
+    }
+    if (m_texture)
+    {
+        renderer.DrawTexture(*m_texture,
+            m_transform.position.x,
+            m_transform.position.y,
+            m_transform.rotation + 90.0f,
+            m_transform.scale);
+    }
 }

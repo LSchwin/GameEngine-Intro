@@ -93,6 +93,8 @@ void SpaceGame::Update(float dt)
 
 void SpaceGame::Draw(nu::Renderer& renderer)
 {
+    renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/background.png", renderer), 600.0f, 600.0f, 0.0f, 10.0f);
+
     switch (m_gameState)
     {
     case GameState::Title:
@@ -124,8 +126,9 @@ void SpaceGame::SpawnPlayer()
 {
     PlayerDesc playerDesc;
     playerDesc.name = "Player";
-    playerDesc.model = assets::playerModel;
-    playerDesc.transform = Transform{ Vector2{640.0f, 512.0f}, 0.0f, 10.0f }; //position, rotation, scale
+    //playerDesc.model = assets::playerModel;
+    playerDesc.texture = Resources().Get<Texture>("textures/player.png", Engine::Get().GetRenderer());
+    playerDesc.transform = Transform{ Vector2{640.0f, 512.0f}, 0.0f, 0.2f }; //position, rotation, scale
     playerDesc.velocity = Vector2{ 0.0f, 0.0f };
     playerDesc.damping = 3.0f;
     playerDesc.speed = 2000.0f;
@@ -142,8 +145,9 @@ void SpaceGame::SpawnEnemy()
 
     EnemyDesc enemyDesc;
     enemyDesc.name = "Enemy";
-    enemyDesc.model = assets::enemyModel;
-    enemyDesc.transform = Transform{ Vector2{nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth())}, 90.0f, 10.0f };
+    //enemyDesc.model = assets::enemyModel;
+    enemyDesc.texture = Resources().Get<Texture>("textures/enemy.png", Engine::Get().GetRenderer());
+    enemyDesc.transform = Transform{ Vector2{nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth())}, 90.0f, 0.2f };
     enemyDesc.velocity = Vector2{ 0.0f, 0.0f };
     enemyDesc.damping = 3.0f;
     enemyDesc.speed = RandomFloat(1000.0f, 2000.0f);
