@@ -44,12 +44,19 @@ namespace nu
 		{
 			if (particle.active)
 			{
-				// set particle color and draw point at current position
-				particle.color = { 1.0f, 1.0f, 1.0f };
-				// TODO: set color with particle color
-				renderer.SetColor(particle.color.r, particle.color.g, particle.color.b, 1.0f);
-				// TODO: draw point with particle position
-				renderer.DrawPoint(particle.position.x, particle.position.y);
+				if (particle.texture)
+				{
+					renderer.DrawTexture(*particle.texture.get(), particle.position.x, particle.position.y);
+				}
+				else
+				{
+					// set particle color and draw point at current position
+					particle.color = { 1.0f, 1.0f, 1.0f };
+					// TODO: set color with particle color
+					renderer.SetColor(particle.color.r, particle.color.g, particle.color.b, 1.0f);
+					// TODO: draw point with particle position
+					renderer.DrawPoint(particle.position.x, particle.position.y);
+				}
 			}
 		}
 	}

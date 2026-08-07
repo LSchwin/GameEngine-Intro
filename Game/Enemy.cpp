@@ -42,9 +42,11 @@ void Enemy::OnCollision(Actor* other)
         {
             nu::Particle particle;
             particle.position = m_transform.position;
-            particle.color = { 1.0f, 1.0f, 1.0f };
+            //particle.color = { 1.0f, 1.0f, 1.0f };
             particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
             particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
+
+            particle.texture = nu::Resources().Get<nu::Texture>("textures/particle.png", nu::Engine::Get().GetRenderer());
 
             nu::Engine::Get().GetPS().AddParticle(particle);
         }
@@ -59,8 +61,10 @@ void Enemy::OnCollision(Actor* other)
             AmmoPickupDesc desc;
             desc.name = "AmmoPickup";
             desc.tag = "AmmoPickup";
-            desc.model = assets::AmmoPickupModel;
-            desc.transform = m_transform;
+            //desc.model = assets::AmmoPickupModel;
+            desc.texture = nu::Resources().Get<nu::Texture>("textures/pickup.png", nu::Engine::Get().GetRenderer());
+            desc.transform.position = m_transform.position;
+            desc.transform.scale = 1.0f;
             desc.lifespan = 30.0f;
             desc.ammoRecoverAmount = 1;
 
@@ -75,9 +79,10 @@ void Enemy::OnCollision(Actor* other)
         {
             nu::Particle particle;
             particle.position = m_transform.position;
-            particle.color = { 1.0f, 1.0f, 1.0f };
+            //particle.color = { 1.0f, 1.0f, 1.0f };
             particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
             particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
+            particle.texture = nu::Resources().Get<nu::Texture>("textures/particle2.png", nu::Engine::Get().GetRenderer());
 
             nu::Engine::Get().GetPS().AddParticle(particle);
         }

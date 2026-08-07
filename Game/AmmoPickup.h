@@ -20,7 +20,7 @@ public:
     {
     }
 
-    //void AddAmmo(Player& player) { player.SetAmmo(player.GetAmmo() + 1); }
+    //void Draw(const class nu::Renderer& renderer) const override;
 
 private:
     int m_ammoRecoverAmount = 0;
