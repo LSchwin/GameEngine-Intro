@@ -9,88 +9,115 @@
 #include <fmod.hpp>
 #include <memory>
 #include <random>
+#include <fstream>
 
 using namespace nu;
-
-uint32_t seed = 1234;
-
-uint32_t RNG()
-{
-    seed = (seed * 1103515245) + 12345;
-    return seed;
-}
 
 
 int main()
 {
-    //rand()
-    for (size_t i = 0; i < 10; i++)
-    {
-        std::cout << RNG() << " ";
-    }
-    std::cout << std::endl;
-
-    seed = 1234;
-    for (size_t i = 0; i < 10; i++)
-    {
-        std::cout << RNG() << " ";
-    }
-    std::cout << std::endl;
-
-    SeedRandom((unsigned int)time(NULL));
-    for (size_t i = 0; i < 10; i++)
-    {
-        std::cout << rand() << " ";
-    }
-    std::cout << std::endl;
-
-
-    // <random>
-    std::random_device randomDevice;
-    std::cout << randomDevice.min() << " " << std::endl;
-    std::cout << randomDevice.max() << " " << std::endl;
-    std::cout << randomDevice.entropy() << " " << std::endl;
-
-    std::mt19937 generator(randomDevice());
-    std::uniform_int_distribution<> dist(0, 20);
-
-    for (size_t i = 0; i < 10; i++)
-    {
-        int t = dist(generator);
-        std::cout << t << " ";
-    }
-    std::cout << std::endl;
-
-    std::uniform_real_distribution<float> distReal(-10.0f, 20.0f);
-
-    for (size_t i = 0; i < 10; i++)
-    {
-        float t = distReal(generator);
-        std::cout << t << " ";
-    }
-    std::cout << std::endl;
-
-
-
-
-
-    //return 0;
-
-
     SetWorkingDirectory("assets");
+
+    {
+        // read file (input file)
+        std::ifstream file("data/test.txt");
+        if (file.is_open())
+        {
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << std::endl;
+            }
+            
+        }
+        else
+        {
+            std::cout << "could not load" << std::endl;
+        }
+        file.close();
+    }
+
+    {
+        // write file(input file)
+        std::ofstream file("data/test.txt", std::ios::app);
+        if (file.is_open())
+        {
+            file << "woaw so based\n";
+        }
+    }
+    
+    {
+        // read / write input (input / output file)
+        std::fstream file("data/test.txt", std::ios::in | std::ios::out | std::ios::app);
+        if (file.is_open())
+        {
+            //input
+            file << "adeline\n";
+            file.seekg(0);
+            //output
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << std::endl;
+            }
+        }
+    }
+
+    {
+        //save game data
+        std::string name;
+        int score;
+        bool isAlive;
+
+        bool save = false;
+        if (save)
+        {
+            name = "blurbous the blorg";
+            score = 21;
+            isAlive = true;
+
+            std::ofstream file("data/game.txt");
+            if (file.is_open())
+            {
+                file << name << "\n";
+                file << score << "\n";
+                file << std::boolalpha << isAlive << "\n";
+            }
+        }
+
+        //load game data
+        bool load = true;
+        if (load)
+        {
+            // read file
+            std::ifstream file("data/game.txt");
+            if (file.is_open())
+            {
+                std::getline(file, name);
+
+                std::string str;
+                std::getline(file, str);
+                score = std::stoi(str);
+                //file >> score;
+
+                file >> std::boolalpha >> isAlive;
+            }
+        }
+
+        //display game data
+        std::cout << name << "\n";
+        std::cout << score << "\n";
+        std::cout << isAlive << "\n";
+
+    }
+
+    return 0;
+
+
     // INITIALIZATION
     Engine::Get().Initialize();
 
     SpaceGame::Get().Initialize();
-
-    //SpaceGame game;
-    //game.Initialize();
-
-
-    // create texture, using shared_ptr so texture can be shared
-    //std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-    //texture->Load("textures/chicken-jockey.png", Engine::Get().GetRenderer());
-    
 
     // MAIN LOOP
     bool quit = false;
@@ -118,10 +145,6 @@ int main()
         SpaceGame::Get().Draw(Engine::Get().GetRenderer());
 
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
-
-
-        //Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("textures/chicken-jockey.png", Engine::Get().GetRenderer()), 30, 30, 45.0f); //test code
-
 
         Engine::Get().GetRenderer().Present(); // Render the screen
     }
