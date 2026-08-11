@@ -18,100 +18,57 @@ int main()
 {
     SetWorkingDirectory("assets");
 
-    {
-        // read file (input file)
-        std::ifstream file("data/test.txt");
-        if (file.is_open())
-        {
-            std::string str;
-            while (std::getline(file, str))
-            {
-                std::cout << str << std::endl;
-            }
-            
-        }
-        else
-        {
-            std::cout << "could not load" << std::endl;
-        }
-        file.close();
-    }
 
-    {
-        // write file(input file)
-        std::ofstream file("data/test.txt", std::ios::app);
-        if (file.is_open())
-        {
-            file << "woaw so based\n";
-        }
-    }
-    
-    {
-        // read / write input (input / output file)
-        std::fstream file("data/test.txt", std::ios::in | std::ios::out | std::ios::app);
-        if (file.is_open())
-        {
-            //input
-            file << "adeline\n";
-            file.seekg(0);
-            //output
-            std::string str;
-            while (std::getline(file, str))
-            {
-                std::cout << str << std::endl;
-            }
-        }
-    }
 
+    // load the json data from a file
+    std::string buffer;
+    if (ReadTextFile("data/data.json", buffer))
     {
-        //save game data
+        // show the contents of the json file (debug)
+        std::cout << buffer << std::endl;
+
+        // create json document from the json file contents
+        rapidjson::Document document;
+        if (json::Load("data/data.json", document))
+        {
+            // read the age data (int) from the json
+            int age;
+            json::Read(document, "age", age);
+            // show the age data
+            std::cout << age << std::endl;
+        }
+
         std::string name;
-        int score;
-        bool isAlive;
+        int age;
+        float speed;
+        bool isAwake;
+        nu::Vector2 position;
+        nu::Vector3 color;
 
-        bool save = false;
-        if (save)
-        {
-            name = "blurbous the blorg";
-            score = 21;
-            isAlive = true;
+        // read the json data
+        JSON_READ(document, name);
+        JSON_READ(document, age);
+        JSON_READ(document, speed);
+        JSON_READ(document, isAwake);
+        JSON_READ(document, position);
+        JSON_READ(document, color);
 
-            std::ofstream file("data/game.txt");
-            if (file.is_open())
-            {
-                file << name << "\n";
-                file << score << "\n";
-                file << std::boolalpha << isAlive << "\n";
-            }
-        }
-
-        //load game data
-        bool load = true;
-        if (load)
-        {
-            // read file
-            std::ifstream file("data/game.txt");
-            if (file.is_open())
-            {
-                std::getline(file, name);
-
-                std::string str;
-                std::getline(file, str);
-                score = std::stoi(str);
-                //file >> score;
-
-                file >> std::boolalpha >> isAlive;
-            }
-        }
-
-        //display game data
-        std::cout << name << "\n";
-        std::cout << score << "\n";
-        std::cout << isAlive << "\n";
+        // show the data
+        std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
+        std::cout << position.x << " " << position.y << std::endl;
+        std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
 
     }
 
+    //+ After running the program, the console will display the contents of the** JSON** file and the** age** data.
+    //+ In the Json.h file, _add_ the following functions.
+    //+ Add new functions to load * *float**, **bool**, **std::string**, ** vec2**, and **vec3**
+    //+Include * *Math / Vector2.h * *and **Math / Vector3.h * *
+    // read/show the data from the json file
+    
     return 0;
+
+
 
 
     // INITIALIZATION

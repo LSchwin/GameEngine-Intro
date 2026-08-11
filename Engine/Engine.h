@@ -16,6 +16,7 @@
 #include "Audio.h"
 #include "ParticleSystem.h"
 #include "Texture.h"
+#include "JSON.h"
 
 // framework
 #include "Actor.h"
