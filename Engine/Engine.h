@@ -5,8 +5,11 @@
 #include "Vector3.h"
 #include "Transform.h"
 #include "MathUtils.h"
+#include "StringUtils.h"
 
 #include "Text.h"
+
+#include "Factory.h"
 
 // systems
 #include "Renderer.h"

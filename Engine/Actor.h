@@ -1,7 +1,7 @@
 #pragma once
+#include "Object.h"
 #include "Transform.h"
 #include "Model.h"
-#include <string>
 #include <vector>
 #include <memory>
 
@@ -25,7 +25,7 @@ namespace nu
     };
 
 
-    class Actor
+    class Actor : public Object
     {
     public:
         Actor() = default;
