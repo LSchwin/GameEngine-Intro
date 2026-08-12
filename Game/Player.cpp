@@ -144,3 +144,11 @@ void Player::Draw(const nu::Renderer& renderer) const
             m_transform.scale);
     }
 }
+
+void Player::Read(const nu::json::value_t& value)
+{
+    Actor::Read(value);
+
+    JSON_READ_NAME(value, "speed", m_speed);
+    JSON_READ_NAME(value, "ammo", m_ammo);
+}

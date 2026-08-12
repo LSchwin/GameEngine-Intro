@@ -1,0 +1,11 @@
+{
+  "name": "L Schwin",
+  "tag": "Instructor",
+  "active": true,
+  "speed": 2099.0,
+  "transform": {
+    "position": [ 2.4, 5.6 ],
+    "rotation": 45.0,
+    "scale": 2.0
+  }
+}

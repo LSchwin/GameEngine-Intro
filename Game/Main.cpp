@@ -14,164 +14,36 @@
 using namespace nu;
 
 
-class Animal
-{
-public:
-    virtual void Speak() { std::cout << "???"; }
-};
-
-class Cat : public Animal
-{
-    void Speak() override { std::cout << "meow"; }
-};
-
-class Dog : public Animal
-{
-    void Speak() override { std::cout << "bork"; }
-};
-
-class Bird : public Animal
-{
-    void Speak() override { std::cout << "bird"; }
-};
-
-enum class Type
-{
-    Cat = 1,
-    Dog,
-    Bird
-};
-
-Animal* AnimalFactory(Type id)
-{
-    Animal* animal = nullptr;
-
-    switch (id)
-    {
-    case Type::Cat:
-        animal = new Cat();
-        break;
-    case Type::Dog:
-        animal = new Dog();
-        break;
-    case Type::Bird:
-        animal = new Bird();
-        break;
-    }
-
-
-    return animal;
-}
-
-Animal* AnimalFactory(const std::string& id)
-{
-    Animal* animal = nullptr;
-
-    if (nu::EqualsIgnoreCase(id, "Cat")) animal = new Cat();
-    else if (ToLower(id) == "dog") animal = new Dog();
-    else if (nu::EqualsIgnoreCase(id, "Bird")) animal = new Bird();
-   
-    return animal;
-}
-
-/*
-class ICreator
-{
-public:
-    virtual ~ICreator() = default;
-    virtual std::unique_ptr<Animal> Create() = 0;
-};
-
-template <typename T>
-class Creator : public ICreator
-{
-public:
-    
-    std::unique_ptr<Animal> Create() override { return  std::make_unique<T>(); }
-};
-
-
-std::map<std::string, std::unique_ptr<ICreator>> registry;
-*/
-
-
 int main()
 {
+    //NO TOUCHY
+    SetWorkingDirectory("assets"); 
+    //NO TOUCHY
+
     Factory::Instance().Register<Actor>("Actor");
+    Factory::Instance().Register<Object>("Object");
+    Factory::Instance().Register<Player>("Player");
+
     auto actor = Factory::Instance().Create<Actor>("Actor");
+    std::cout << actor->IsActive() << std::endl;
 
-    //registry["Cat"] = std::make_unique<Creator<Cat>>();
-    //registry["Dog"] = std::make_unique<Creator<Dog>>();
+    auto object = Factory::Instance().Create("Object");
+    std::cout << object->IsActive() << std::endl;
 
-    //{
-    //    auto animal = registry["Cat"]->Create();
-    //    auto animal2 = registry["Dog"]->Create();
-    //    animal->Speak();
-    //    animal2->Speak();
-    //}
+    auto player = Factory::Instance().Create<Player>("Player");
+    std::cout << player->IsActive() << std::endl;
 
-    /*std::string selection;
-    std::cout << "Select Animal: ";
-    std::cin >> selection;
-
-    auto animal = AnimalFactory(selection);
-    animal->Speak();*/
-
-
-
-    return 0;
-
-
-    SetWorkingDirectory("assets");
-
-    // load the json data from a file
-    std::string buffer;
-    if (ReadTextFile("data/data.json", buffer))
+    
+    json::document_t document;
+    if (json::Load("data/scene.json", document))
     {
-        // show the contents of the json file (debug)
-        std::cout << buffer << std::endl;
-
-        // create json document from the json file contents
-        rapidjson::Document document;
-        if (json::Load("data/data.json", document))
-        {
-            // read the age data (int) from the json
-            int age;
-            json::Read(document, "age", age);
-            // show the age data
-            std::cout << age << std::endl;
-        }
-
-        std::string name;
-        int age;
-        float speed;
-        bool isAwake;
-        nu::Vector2 position;
-        nu::Vector3 color;
-
-        // read the json data
-        JSON_READ(document, name);
-        JSON_READ(document, age);
-        JSON_READ(document, speed);
-        JSON_READ(document, isAwake);
-        JSON_READ(document, position);
-        JSON_READ(document, color);
-
-        // show the data
-        std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
-        std::cout << position.x << " " << position.y << std::endl;
-        std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
-
+        actor->Read(document); //make player
+        std::cout << actor->GetName() << std::endl;
+        std::cout << actor->GetTag() << std::endl;
+        std::cout << actor->GetTransform().rotation << std::endl;
     }
 
-    //+ After running the program, the console will display the contents of the** JSON** file and the** age** data.
-    //+ In the Json.h file, _add_ the following functions.
-    //+ Add new functions to load * *float**, **bool**, **std::string**, ** vec2**, and **vec3**
-    //+Include * *Math / Vector2.h * *and **Math / Vector3.h * *
-    // read/show the data from the json file
-    
     return 0;
-
 
 
 

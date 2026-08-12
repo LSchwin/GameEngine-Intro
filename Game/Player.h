@@ -26,6 +26,10 @@ public:
     int GetAmmo() const { return m_ammo; }
     void SetAmmo(int ammo) { m_ammo = ammo; }
 
+    float GetSpeed() const { return m_speed; }
+
+    virtual void Read(const nu::json::value_t& value) override;
+
 public:
     nu::Text* m_ammoText{ nullptr };
 

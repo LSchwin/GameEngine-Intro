@@ -31,8 +31,8 @@ namespace nu
             requires std::derived_from<T, Object>
         void Register(const std::string& name);
 
-        template <typename T>
-            requires std::derived_from<T, class Object>
+        template <typename T = Object>
+            requires std::derived_from<T, Object>
         std::unique_ptr<T> Create(const std::string& name);
 
     private:
@@ -53,6 +53,7 @@ namespace nu
         }
         m_registry[lowerName] = std::make_unique<Creator<T>>();
     }
+
 
     template <typename T>
         requires std::derived_from<T, Object>

@@ -42,7 +42,22 @@ namespace nu
     float Actor::GetRadius() const
     {
         if (m_texture) return (m_texture->GetSize().Length() * 0.5f * m_transform.scale) * 0.5f;
+        else if (m_model) return m_model->GetRadius() * m_transform.scale * 0.9f;
+        else return 0.0f;
+    }
 
-        if (m_model) return m_model->GetRadius()* m_transform.scale * 0.9f;
+    void Actor::Read(const json::value_t& value)
+    {
+        Object::Read(value);
+
+        if (JSON_HAS_NAME(value, "transform"))
+        {
+            m_transform.Read(JSON_GET_NAME(value, "transform"));
+        }
+
+        JSON_READ_NAME(value, "tag", m_tag);
+        JSON_READ_NAME(value, "lifespan", m_lifespan);
+        JSON_READ_NAME(value, "velocity", m_velocity);
+        JSON_READ_NAME(value, "damping", m_damping);
     }
 }
