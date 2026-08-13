@@ -19,11 +19,16 @@ public:
     {
     }
 
+    CLASS_PROTOTYPE(Bomb)
+
     void Update(float dt) override;
 
     void OnCollision(Actor* other) override;
 
     void Draw(const class nu::Renderer& renderer) const override;
+
+
+    virtual void Read(const nu::json::value_t& value) override;
 
 private:
     float m_speed = 800.0f;

@@ -2,6 +2,8 @@
 #include "Object.h"
 #include "Singleton.h"
 
+#include "StringUtils.h"
+
 #include <memory>
 #include <map>
 
@@ -24,12 +26,34 @@ namespace nu
         std::unique_ptr<Object> Create() override { return  std::make_unique<T>(); }
     };
 
+
+    template <typename T>
+        requires std::derived_from<T, Object>
+    class PrototypeCreator : public ICreator
+    {
+    public:
+        PrototypeCreator(std::unique_ptr<Object> prototype) :
+            m_prototype{ std::move(prototype) }
+        { }
+        std::unique_ptr<Object> Create() override 
+        { 
+            return m_prototype->Clone();
+        }
+    private:
+        std::unique_ptr<Object> m_prototype;
+    };
+
+
     class Factory : public Singleton<Factory>
     {
     public:
         template <typename T>
             requires std::derived_from<T, Object>
         void Register(const std::string& name);
+
+        template <typename T>
+            requires std::derived_from<T, Object>
+        void RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype);
 
         template <typename T = Object>
             requires std::derived_from<T, Object>
@@ -52,6 +76,21 @@ namespace nu
             return;
         }
         m_registry[lowerName] = std::make_unique<Creator<T>>();
+    }
+
+
+    template<typename T>
+        requires std::derived_from<T, Object>
+    inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<T> prototype)
+    {
+        std::string lowerName = ToLower(name);
+
+        if (m_registry.contains(lowerName))
+        {
+            std::cerr << "Object already registered: " << name << std::endl;
+            return;
+        }
+        m_registry[lowerName] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
     }
 
 

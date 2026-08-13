@@ -19,6 +19,8 @@ public:
 
     {}
 
+    CLASS_PROTOTYPE(Player)
+
     void Update(float dt) override;
     void OnCollision(Actor* other) override;
     void Draw(const class nu::Renderer& renderer) const override;

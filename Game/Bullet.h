@@ -18,8 +18,13 @@ public:
         m_speed{ BulletDesc.speed }
     {}
 
+    CLASS_PROTOTYPE(Bullet)
+
     void Update(float dt) override;
     void Draw(const class nu::Renderer& renderer) const override;
+
+
+    virtual void Read(const nu::json::value_t& value) override;
 
 private:
     float m_speed = 800.0f;

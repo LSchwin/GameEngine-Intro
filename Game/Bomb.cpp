@@ -52,3 +52,11 @@ void Bomb::Draw(const nu::Renderer& renderer) const
             m_transform.scale);
     }
 }
+
+void Bomb::Read(const nu::json::value_t& value)
+{
+    Actor::Read(value);
+
+    JSON_READ_NAME(value, "speed", m_speed);
+    JSON_READ_NAME(value, "exploded", m_exploded);
+}

@@ -3,6 +3,8 @@
 #include "Font.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Bullet.h"
+#include "Bomb.h"
 #include "Assets.h"
 #include <memory>
 
@@ -14,6 +16,7 @@ bool SpaceGame::Initialize()
 
     m_scene = new Scene();
     m_scene->SetGame(this);
+    m_scene->Load("data/scene.json");
 
     Engine::Get().GetAudio().AddSound("laser", "audio/laser.wav"); //add some more sounds later
     Engine::Get().GetAudio().AddSound("bomb", "audio/Blaster.wav"); //add some more sounds later
@@ -22,10 +25,6 @@ bool SpaceGame::Initialize()
 
     nu::Engine::Get().GetAudio().PlaySound("MusicLoop");
 
-    //Resources().Get<Texture>("textures/player.png", Engine::Get().GetRenderer());
-
-
-    //m_titleFont = Resources().Get<Font>("fonts/Tildunk.ttf", 64.0f);
     m_titleText = new Text(Resources().GetWithID<Font>("title_font", "fonts/Tildunk.ttf", 64.0f)); //get with ID
     m_titleText->Create(Engine::Get().GetRenderer(), "SPAAAAAAAACE", Color{ 1.0f, 1.0f, 1.0f });
 
@@ -124,36 +123,18 @@ void SpaceGame::Draw(nu::Renderer& renderer)
 
 void SpaceGame::SpawnPlayer()
 {
-    PlayerDesc playerDesc;
-    playerDesc.name = "Player";
-    //playerDesc.model = assets::playerModel;
-    playerDesc.texture = Resources().Get<Texture>("textures/player.png", Engine::Get().GetRenderer());
-    playerDesc.transform = Transform{ Vector2{640.0f, 512.0f}, 0.0f, 0.2f }; //position, rotation, scale
-    playerDesc.velocity = Vector2{ 0.0f, 0.0f };
-    playerDesc.damping = 3.0f;
-    playerDesc.speed = 2000.0f;
-    
-    std::unique_ptr<Player> player = std::make_unique<Player>(playerDesc);
-    player->m_ammoText = new Text(m_gameFont);
+    auto player = Factory::Instance().Create<Player>("PlayerPrototype");
     m_scene->AddActor(std::move(player));
 }
 
 void SpaceGame::SpawnEnemy()
 {
-    m_spawnTimerMin = (m_spawnTimerMin <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMin - 0.5f; //here
-    m_spawnTimerMin = (m_spawnTimerMax <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMax - 0.5f; //here
+    m_spawnTimerMin = (m_spawnTimerMin <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMin - 0.5f;
+    m_spawnTimerMin = (m_spawnTimerMax <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMax - 0.5f;
 
-    EnemyDesc enemyDesc;
-    enemyDesc.name = "Enemy";
-    //enemyDesc.model = assets::enemyModel;
-    enemyDesc.texture = Resources().Get<Texture>("textures/enemy.png", Engine::Get().GetRenderer());
-    enemyDesc.transform = Transform{ Vector2{nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth())}, 90.0f, 0.2f };
-    enemyDesc.velocity = Vector2{ 0.0f, 0.0f };
-    enemyDesc.damping = 3.0f;
-    enemyDesc.speed = RandomFloat(1000.0f, 2000.0f);
-
-    //Enemy* enemy = new Enemy{ enemyDesc };
-    m_scene->AddActor(std::move(std::make_unique<Enemy>(enemyDesc)));
+    auto enemy = Factory::Instance().Create<Enemy>("EnemyPrototype");
+    //enemy->SetPosition({ nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()) });
+    m_scene->AddActor(std::move(enemy));
 }
 
 void SpaceGame::onPlayerDead()

@@ -1,9 +1,14 @@
 #include "Engine.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "Assets.h"
 
 #include "SpaceGame.h"
+
+#include "Player.h"
+#include "Enemy.h"
+#include "Bullet.h"
+#include "Bomb.h"
+#include "AmmoPickup.h"
+#include "Assets.h"
+
 
 #include <map>
 #include <fmod.hpp>
@@ -23,7 +28,12 @@ int main()
     Factory::Instance().Register<Actor>("Actor");
     Factory::Instance().Register<Object>("Object");
     Factory::Instance().Register<Player>("Player");
+    Factory::Instance().Register<Enemy>("Enemy");
+    Factory::Instance().Register<Bullet>("Bullet");
+    Factory::Instance().Register<Bomb>("Bomb");
+    Factory::Instance().Register<AmmoPickup>("AmmoPickup");
 
+    /*
     auto actor = Factory::Instance().Create<Actor>("Actor");
     std::cout << actor->IsActive() << std::endl;
 
@@ -42,8 +52,10 @@ int main()
         std::cout << actor->GetTag() << std::endl;
         std::cout << actor->GetTransform().rotation << std::endl;
     }
-
     return 0;
+    */
+    
+
 
 
 

@@ -85,7 +85,7 @@ void Player::Update(float dt)
 
 void Player::OnCollision(Actor* other)
 {
-    if (other->GetName() == "Enemy") 
+    if (other->GetTag() == "Enemy") 
     { 
         SetDestroyed();
         ((SpaceGame*)m_scene->GetGame())->onPlayerDead();
@@ -103,7 +103,7 @@ void Player::OnCollision(Actor* other)
         }
     }
 
-    if (other->GetName() == "AmmoPickup")
+    if (other->GetTag() == "AmmoPickup")
     {
         other->SetDestroyed();
         m_ammo++;
@@ -121,8 +121,8 @@ void Player::Draw(const nu::Renderer& renderer) const
     case SpaceGame::GameState::StartGame:
     case SpaceGame::GameState::StartLevel:
     case SpaceGame::GameState::Game:
-        m_ammoText->Create(nu::Engine::Get().GetRenderer(), "Bombs: " + std::to_string(m_ammo), { 1.0f, 1.0f, 1.0f });
-        m_ammoText->Draw(renderer, 30, 100);
+        //m_ammoText->Create(nu::Engine::Get().GetRenderer(), "Bombs: " + std::to_string(m_ammo), { 1.0f, 1.0f, 1.0f });
+        //m_ammoText->Draw(renderer, 30, 100);
         break;
     case SpaceGame::GameState::GameOver:
         break;

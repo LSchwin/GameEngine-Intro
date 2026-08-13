@@ -1,11 +1,51 @@
 {
-  "name": "L Schwin",
-  "tag": "Instructor",
-  "active": true,
-  "speed": 2099.0,
-  "transform": {
-    "position": [ 2.4, 5.6 ],
-    "rotation": 45.0,
-    "scale": 2.0
-  }
+  "actors": [
+    {
+      "name": "PlayerPrototype",
+      "type": "Player",
+      "prototype": true,
+      "tag": "Player",
+      "active": true,
+      "speed": 2000.0,
+      "damping": 3.0,
+      "ammo": 3,
+      "texture": "textures/player.png",
+      "transform": {
+        "position": [ 640.0, 512.0 ],
+        "rotation": 0.0,
+        "scale": 0.2
+      }
+    },
+    {
+      "name": "EnemyPrototype",
+      "type": "Enemy",
+      "prototype": true,
+      "tag": "Enemy",
+      "active": true,
+      "speed": 2000.0,
+      "damping": 3.0,
+      "ammo": 3,
+      "texture": "textures/enemy.png",
+      "transform": {
+        "position": [ 640.0, 512.0 ],
+        "rotation": 0.0,
+        "scale": 0.2
+      }
+    },
+    {
+      "name": "BulletPrototype",
+      "type": "Bullet",
+      "prototype": true,
+      "tag": "Bullet",
+      "active": true,
+      "speed": 2000.0,
+      "damping": 3.0,
+      "texture": "textures/bullet.png",
+      "transform": {
+        "position": [ 640.0, 512.0 ],
+        "rotation": 0.0,
+        "scale": 0.2
+      }
+    }
+  ]
 }

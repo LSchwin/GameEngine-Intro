@@ -2,6 +2,8 @@
 #include "Scene.h"
 #include "Actor.h"
 
+#include "Factory.h"
+
 namespace nu
 {
 	void Scene::AddActor(std::unique_ptr<Actor> actor)
@@ -10,10 +12,62 @@ namespace nu
 		m_pendingActors.push_back(std::move(actor)); 
 	}
 
+
 	void Scene::RemoveAllActors()
 	{
 		m_actors.clear();
 	}
+
+
+	bool Scene::Load(const std::string& sceneName)
+	{
+		json::document_t document;
+		if (json::Load("data/scene.json", document))
+		{
+			if (JSON_HAS_NAME(document, "actors"))
+			{
+				for (auto& actorValue : JSON_GET_NAME(document, "actors").GetArray())
+				{
+					// get actor type
+					std::string typeName;
+					JSON_READ_NAME(actorValue, "type", typeName);
+
+					//create actor of type
+					auto actor = Factory::Instance().Create<Actor>(typeName);
+
+					//read actor json
+					actor->Read(actorValue);
+
+					// check if prototype
+					bool prototype = false;
+					JSON_READ(actorValue, prototype);
+
+					if (prototype)
+					{
+						// if prototype, add prototype to factory registry
+						std::string name;
+						JSON_READ(actorValue, name);
+						Factory::Instance().RegisterPrototype<Actor>(name, std::move(actor));
+					}
+					else
+					{
+						// if not prototype, add to scene
+						AddActor(std::move(actor));
+					}
+				}
+			}
+		}
+		else
+		{
+			return false;
+		}
+
+
+
+
+		return true;
+	}
+
 
 	void Scene::Update(float dt)
 	{
@@ -36,6 +90,7 @@ namespace nu
 		}
 		m_pendingActors.clear();
 	}
+
 
 	void Scene::Draw(const class Renderer& renderer)
 	{

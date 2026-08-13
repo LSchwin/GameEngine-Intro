@@ -108,3 +108,10 @@ void Enemy::Draw(const nu::Renderer& renderer) const
             m_transform.scale);
     }
 }
+
+void Enemy::Read(const nu::json::value_t& value)
+{
+    Actor::Read(value);
+
+    JSON_READ_NAME(value, "speed", m_speed);
+}
