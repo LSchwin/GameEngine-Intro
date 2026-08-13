@@ -11,7 +11,7 @@
 
 void Enemy::Update(float dt)
 {
-    Player* player = m_scene->GetActorByName<Player>("Player");
+    Player* player = m_scene->GetActorByName<Player>("PlayerPrototype");
     if (player)
     {
         nu::Vector2 direction = player->GetTransform().position - m_transform.position;

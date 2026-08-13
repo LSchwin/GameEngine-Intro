@@ -25,7 +25,7 @@ void Bomb::Update(float dt)
 
 void Bomb::OnCollision(Actor* other)
 {
-    if (other->GetName() == "Enemy")
+    if (other->GetTag() == "Enemy")
     {
         //SetModel(assets::bombExplosionModel);
         m_texture = nu::Resources().Get<nu::Texture>("textures/bombexplosion.png", nu::Engine::Get().GetRenderer());

@@ -61,10 +61,6 @@ namespace nu
 		{
 			return false;
 		}
-
-
-
-
 		return true;
 	}
 
