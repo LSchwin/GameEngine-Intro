@@ -24,39 +24,8 @@ int main()
     //NO TOUCHY
     SetWorkingDirectory("assets"); 
     //NO TOUCHY
-
-    Factory::Instance().Register<Actor>("Actor");
-    Factory::Instance().Register<Object>("Object");
-    Factory::Instance().Register<Player>("Player");
-    Factory::Instance().Register<Enemy>("Enemy");
-    Factory::Instance().Register<Bullet>("Bullet");
-    Factory::Instance().Register<Bomb>("Bomb");
+    
     Factory::Instance().Register<AmmoPickup>("AmmoPickup");
-
-    /*
-    auto actor = Factory::Instance().Create<Actor>("Actor");
-    std::cout << actor->IsActive() << std::endl;
-
-    auto object = Factory::Instance().Create("Object");
-    std::cout << object->IsActive() << std::endl;
-
-    auto player = Factory::Instance().Create<Player>("Player");
-    std::cout << player->IsActive() << std::endl;
-
-    
-    json::document_t document;
-    if (json::Load("data/scene.json", document))
-    {
-        actor->Read(document); //make player
-        std::cout << actor->GetName() << std::endl;
-        std::cout << actor->GetTag() << std::endl;
-        std::cout << actor->GetTransform().rotation << std::endl;
-    }
-    return 0;
-    */
-    
-
-
 
 
     // INITIALIZATION

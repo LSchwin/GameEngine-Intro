@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "Transform.h"
 #include "Model.h"
+#include "Component.h"
 #include <vector>
 #include <memory>
 
@@ -35,9 +36,7 @@ namespace nu
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
             m_damping{ actorDesc.damping },
-            m_lifespan{ actorDesc.lifespan },
-            m_model{ actorDesc.model },
-            m_texture{ actorDesc.texture }
+            m_lifespan{ actorDesc.lifespan }
         {}
 
         CLASS_PROTOTYPE(Actor)
@@ -59,8 +58,7 @@ namespace nu
         const std::string& GetName() const { return m_name;  }
         const std::string& GetTag() const { return m_tag;  }
 
-        std::vector<Model> m_modelList;
-        void SetModel(std::shared_ptr<Model> model) { m_model = model; }
+        //std::vector<Model> m_modelList; //unsure if I can delete
 
         Scene* GetScene() { return m_scene; }
 
@@ -82,8 +80,10 @@ namespace nu
         float m_lifespan{ 0.0f };
         bool m_destroyed{ false };
 
-        res_t<Model> m_model;
-        res_t<Texture> m_texture;
+        
+
+        std::vector<Component*> m_components;
+
         Scene* m_scene{ nullptr };
     };
 }

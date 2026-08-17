@@ -10,6 +10,8 @@
 #include "Texture.h"
 #include "ResourceManager.h"
 
+FACTORY_REGISTER(Player)
+
 void Player::Update(float dt)
 {
 
@@ -33,17 +35,13 @@ void Player::Update(float dt)
     {
         nu::Engine::Get().GetAudio().PlaySound("laser");
 
-        BulletDesc desc;
-        desc.name = "Bullet";
-        desc.tag = "PlayerBullet";
-        //desc.model = assets::bulletModel;
-        desc.texture = nu::Resources().Get<nu::Texture>("textures/bullet.png", nu::Engine::Get().GetRenderer());
-        desc.transform = m_transform;
-        desc.transform.scale = 2.0f;
-        desc.speed = 4000.0f;
-        desc.lifespan = 0.25f;
+        auto bullet = nu::Factory::Instance().Create<Bullet>("BulletPrototype");
 
-        std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>( desc );
+        //desc.transform = m_transform;
+        //desc.transform.scale = 2.0f;
+
+        // may need to make some setters
+
         m_scene->AddActor(std::move(bullet));
     }
 
@@ -131,18 +129,18 @@ void Player::Draw(const nu::Renderer& renderer) const
     }
 
 
-    if (m_model)
-    {
-        renderer.DrawModel(*m_model, m_transform);
-    }
-    if (m_texture)
-    {
-        renderer.DrawTexture(*m_texture,
-            m_transform.position.x,
-            m_transform.position.y,
-            m_transform.rotation + 90.0f,
-            m_transform.scale);
-    }
+    //if (m_model)
+    //{
+    //    renderer.DrawModel(*m_model, m_transform);
+    //}
+    //if (m_texture)
+    //{
+    //    renderer.DrawTexture(*m_texture,
+    //        m_transform.position.x,
+    //        m_transform.position.y,
+    //        m_transform.rotation + 90.0f,
+    //        m_transform.scale);
+    //}
 }
 
 void Player::Read(const nu::json::value_t& value)

@@ -9,12 +9,17 @@
       "speed": 2000.0,
       "damping": 3.0,
       "ammo": 3,
-      "texture": "textures/player.png",
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
         "scale": 0.2
-      }
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/player.png"
+        }
+      ]
     },
     {
       "name": "EnemyPrototype",
@@ -39,12 +44,28 @@
       "tag": "Bullet",
       "active": true,
       "speed": 2000.0,
-      "damping": 3.0,
+      "damping": 0.0,
+      "lifespan": 2.0,
       "texture": "textures/bullet.png",
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
         "scale": 0.2
+      }
+    },
+    {
+      "name": "BombPrototype",
+      "type": "Bomb",
+      "prototype": true,
+      "tag": "Bomb",
+      "active": true,
+      "speed": 6000.0,
+      "damping": 0.0,
+      "texture": "textures/bomb.png",
+      "transform": {
+        "position": [ 0.0, 0.0 ],
+        "rotation": 0.0,
+        "scale": 2.0
       }
     }
   ]
