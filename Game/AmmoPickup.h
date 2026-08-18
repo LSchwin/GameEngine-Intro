@@ -21,7 +21,7 @@ public:
 
     //void Draw(const class nu::Renderer& renderer) const override;
 
-    // virtual void Read(const nu::json::value_t& value) override; //need???
+    //virtual void Read(const nu::json::value_t& value) override; //need???
 
 private:
     int m_ammoRecoverAmount = 0;

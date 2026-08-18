@@ -43,6 +43,8 @@ namespace nu
 		Vector2 Normalized() const { return (*this) / Length(); } //this in vec3
 		float Dot(const Vector2& v) const { return (this->x * v.x) + (this->y * v.y); } //this in vec3
 
+		float Distance(const Vector2& v) const { return (v - *this).Length(); }
+
 		float Angle() const { return std::atan2(this->y, this->x); }
 		float AngleBetween(const Vector2& v) const { return std::acos(Dot(v)); }
 		Vector2 Rotate(float radians)

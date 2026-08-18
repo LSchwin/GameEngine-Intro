@@ -133,7 +133,7 @@ void SpaceGame::SpawnEnemy()
     m_spawnTimerMin = (m_spawnTimerMax <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMax - 0.5f;
 
     auto enemy = Factory::Instance().Create<Enemy>("EnemyPrototype");
-    //enemy->SetPosition({ nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()) });
+    enemy->SetPosition({ nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()) });
     m_scene->AddActor(std::move(enemy));
 }
 

@@ -41,18 +41,7 @@ void Bomb::OnCollision(Actor* other)
 
 void Bomb::Draw(const nu::Renderer& renderer) const
 {
-    //if (m_model)
-    //{
-    //    renderer.DrawModel(*m_model, m_transform);
-    //}
-    //if (m_texture)
-    //{
-    //    renderer.DrawTexture(*m_texture,
-    //        m_transform.position.x,
-    //        m_transform.position.y,
-    //        m_transform.rotation + 90.0f,
-    //        m_transform.scale);
-    //}
+    Actor::Draw(renderer);
 }
 
 void Bomb::Read(const nu::json::value_t& value)

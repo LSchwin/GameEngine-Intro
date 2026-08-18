@@ -36,11 +36,9 @@ void Player::Update(float dt)
         nu::Engine::Get().GetAudio().PlaySound("laser");
 
         auto bullet = nu::Factory::Instance().Create<Bullet>("BulletPrototype");
-
-        //desc.transform = m_transform;
-        //desc.transform.scale = 2.0f;
-
-        // may need to make some setters
+        bullet->SetTransform(m_transform);
+        bullet->SetScale(2.0f);
+        bullet->SetTag("PlayerBullet");
 
         m_scene->AddActor(std::move(bullet));
     }
@@ -49,17 +47,24 @@ void Player::Update(float dt)
     {
         nu::Engine::Get().GetAudio().PlaySound("bomb");
 
-        BombDesc desc;
-        desc.name = "Bullet";
-        desc.tag = "PlayerBomb";
-        //desc.model = assets::bombModel;
-        desc.texture = nu::Resources().Get<nu::Texture>("textures/bomb.png", nu::Engine::Get().GetRenderer());
-        desc.transform = m_transform;
-        desc.transform.scale = 2.0f;
-        desc.speed = 6000.0f;
-        desc.lifespan = 2.0f;
 
-        std::unique_ptr<Bomb> bomb = std::make_unique<Bomb>(desc);
+        auto bomb = nu::Factory::Instance().Create<Bomb>("BombPrototype");
+        bomb->SetTransform(m_transform);
+        bomb->SetScale(2.0f);
+        bomb->SetTag("PlayerBomb");
+
+
+
+        //BombDesc desc;
+        //desc.name = "Bullet";
+        //desc.tag = "PlayerBomb";
+        ////desc.model = assets::bombModel;
+        //desc.texture = nu::Resources().Get<nu::Texture>("textures/bomb.png", nu::Engine::Get().GetRenderer());
+        //desc.transform = m_transform;
+        //desc.transform.scale = 2.0f;
+        //desc.speed = 6000.0f;
+        //desc.lifespan = 2.0f;
+        //std::unique_ptr<Bomb> bomb = std::make_unique<Bomb>(desc);
 
         m_scene->AddActor(std::move(bomb));
 
@@ -141,6 +146,9 @@ void Player::Draw(const nu::Renderer& renderer) const
     //        m_transform.rotation + 90.0f,
     //        m_transform.scale);
     //}
+
+
+    Actor::Draw(renderer);
 }
 
 void Player::Read(const nu::json::value_t& value)

@@ -18,6 +18,10 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/player.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 64.0
         }
       ]
     },
@@ -30,12 +34,21 @@
       "speed": 2000.0,
       "damping": 3.0,
       "ammo": 3,
-      "texture": "textures/enemy.png",
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
         "scale": 0.2
-      }
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/enemy.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 64.0
+        }
+      ]
     },
     {
       "name": "BulletPrototype",
@@ -46,12 +59,21 @@
       "speed": 2000.0,
       "damping": 0.0,
       "lifespan": 2.0,
-      "texture": "textures/bullet.png",
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
         "scale": 0.2
-      }
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/bullet.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 24.0
+        }
+      ]
     },
     {
       "name": "BombPrototype",
@@ -59,14 +81,25 @@
       "prototype": true,
       "tag": "Bomb",
       "active": true,
+      "exploded": false,
       "speed": 6000.0,
       "damping": 0.0,
-      "texture": "textures/bomb.png",
+      "lifespan": 2.0,
       "transform": {
         "position": [ 0.0, 0.0 ],
         "rotation": 0.0,
         "scale": 2.0
-      }
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/bomb.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 64.0
+        }
+      ]
     }
   ]
 }
