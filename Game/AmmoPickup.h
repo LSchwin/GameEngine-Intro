@@ -9,7 +9,7 @@ class AmmoPickup : public nu::Actor
 public:
     AmmoPickup() = default;
 
-
+    CLASS_PROTOTYPE(AmmoPickup)
 
     //void Draw(const class nu::Renderer& renderer) const override;
 

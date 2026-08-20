@@ -57,8 +57,8 @@ void Enemy::OnCollision(Actor* other)
             auto pickup = nu::Factory::Instance().Create<AmmoPickup>("AmmoPickupPrototype");
             if (pickup) 
             {
-                //pickup->SetPosition(m_transform.position);
-                //m_scene->AddActor(std::move(pickup));
+                pickup->SetPosition(m_transform.position);
+                m_scene->AddActor(std::move(pickup));
             }
         }
 
