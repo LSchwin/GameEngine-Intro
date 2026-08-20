@@ -105,6 +105,9 @@ namespace nu
             return;
         }
         m_registry[lowerName] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
+
+
+        std::cout << name << std::endl;
     }
 
 
@@ -122,8 +125,6 @@ namespace nu
 
         auto iter = m_registry.find(lowerName);
 
-
-        //auto creator = m_registry[lowerName];
         // create unique ptr to object
         auto object = iter->second->Create();
 

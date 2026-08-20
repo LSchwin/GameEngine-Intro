@@ -36,8 +36,7 @@ void Enemy::Update(float dt)
 }
 
 void Enemy::OnCollision(Actor* other)
-{
-    
+{   
     if (other->GetTag() == "PlayerBullet")
     {
         for (int i = 0; i < 100; i++)
@@ -53,27 +52,20 @@ void Enemy::OnCollision(Actor* other)
             nu::Engine::Get().GetPS().AddParticle(particle);
         }
 
+        if (nu::RandomInt(3) != 10000)
+        {
+            auto pickup = nu::Factory::Instance().Create<AmmoPickup>("AmmoPickupPrototype");
+            if (pickup) 
+            {
+                //pickup->SetPosition(m_transform.position);
+                //m_scene->AddActor(std::move(pickup));
+            }
+        }
+
         SetDestroyed();
         other->SetDestroyed();
 
         ((SpaceGame*)m_scene->GetGame())->AddPoints(100);
-
-        if (nu::RandomInt(3) == 1)
-        {
-            AmmoPickupDesc desc;
-            desc.name = "AmmoPickup";
-            desc.tag = "AmmoPickup";
-            //desc.model = assets::AmmoPickupModel;
-            desc.texture = nu::Resources().Get<nu::Texture>("textures/pickup.png", nu::Engine::Get().GetRenderer());
-            desc.transform.position = m_transform.position;
-            desc.transform.scale = 1.0f;
-            desc.lifespan = 30.0f;
-            desc.ammoRecoverAmount = 1;
-
-            std::unique_ptr<AmmoPickup> pickup = std::make_unique<AmmoPickup>( desc );
-            m_scene->AddActor(std::move(pickup));
-        }
-
     }
     else if (other->GetTag() == "PlayerBomb")
     {

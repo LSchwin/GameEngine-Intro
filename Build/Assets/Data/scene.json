@@ -100,6 +100,31 @@
           "radius": 64.0
         }
       ]
+    },
+    {
+      "name": "AmmoPickupPrototype",
+      "type": "AmmoPickup",
+      "prototype": true,
+      "tag": "AmmoPickup",
+      "active": true,
+      "speed": 0.0,
+      "damping": 0.0,
+      "lifespan": 30.0,
+      "transform": {
+        "position": [ 640.0, 512.0 ],
+        "rotation": 0.0,
+        "scale": 1.0
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/pickup.png"
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 24.0
+        }
+      ]
     }
   ]
 }

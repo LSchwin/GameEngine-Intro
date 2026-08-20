@@ -53,19 +53,6 @@ void Player::Update(float dt)
         bomb->SetScale(2.0f);
         bomb->SetTag("PlayerBomb");
 
-
-
-        //BombDesc desc;
-        //desc.name = "Bullet";
-        //desc.tag = "PlayerBomb";
-        ////desc.model = assets::bombModel;
-        //desc.texture = nu::Resources().Get<nu::Texture>("textures/bomb.png", nu::Engine::Get().GetRenderer());
-        //desc.transform = m_transform;
-        //desc.transform.scale = 2.0f;
-        //desc.speed = 6000.0f;
-        //desc.lifespan = 2.0f;
-        //std::unique_ptr<Bomb> bomb = std::make_unique<Bomb>(desc);
-
         m_scene->AddActor(std::move(bomb));
 
         m_ammo--;

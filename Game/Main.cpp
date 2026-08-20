@@ -25,8 +25,7 @@ int main()
     SetWorkingDirectory("assets"); 
     //NO TOUCHY
     
-    Factory::Instance().Register<AmmoPickup>("AmmoPickup");
-
+    //Factory::Instance().Register<AmmoPickup>("AmmoPickup");
 
     // INITIALIZATION
     Engine::Get().Initialize();
