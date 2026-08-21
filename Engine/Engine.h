@@ -20,6 +20,7 @@
 #include "ParticleSystem.h"
 #include "Texture.h"
 #include "JSON.h"
+#include "Physics/Physics.h"
 
 // framework
 #include "Actor.h"
@@ -53,6 +54,8 @@ namespace nu
 
 		ParticleSystem& GetPS() { return m_particleSystem; }
 
+		Physics& GetPhysics() { return m_physics; }
+
 	private:
 		Engine() = default;
 
@@ -63,5 +66,6 @@ namespace nu
 		Audio m_audio;
 		Time m_time;
 		ParticleSystem m_particleSystem;
+		Physics m_physics;
 	};
 }
