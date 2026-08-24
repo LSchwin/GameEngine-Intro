@@ -1,6 +1,6 @@
 #pragma once
 #include "Object.h"
-#include "Transform.h"
+#include "Math/Transform.h"
 #include "Model.h"
 #include "Components/Component.h"
 #include <vector>
@@ -92,8 +92,6 @@ namespace nu
 
         std::vector<std::unique_ptr<Component>> m_components;
         
-
-
         Scene* m_scene{ nullptr };
     };
 

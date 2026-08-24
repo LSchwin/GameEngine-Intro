@@ -2,14 +2,6 @@
 
 #include "SpaceGame.h"
 
-#include "Player.h"
-#include "Enemy.h"
-#include "Bullet.h"
-#include "Bomb.h"
-#include "AmmoPickup.h"
-#include "Assets.h"
-
-
 #include <map>
 #include <fmod.hpp>
 #include <memory>
@@ -25,7 +17,6 @@ int main()
     SetWorkingDirectory("assets"); 
     //NO TOUCHY
     
-    //Factory::Instance().Register<AmmoPickup>("AmmoPickup");
 
     // INITIALIZATION
     Engine::Get().Initialize();

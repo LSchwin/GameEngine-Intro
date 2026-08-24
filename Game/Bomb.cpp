@@ -1,6 +1,6 @@
 #include "Engine.h"
 #include "Bomb.h"
-#include "MathUtils.h"
+#include "Math/MathUtils.h"
 #include "Assets.h"
 
 #include "Texture.h"
