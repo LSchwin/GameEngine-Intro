@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Assets\Scenes">
+      <UniqueIdentifier>{b0ec62a0-ed9a-4ff7-8cc8-b92ffbad9a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Animations">
+      <UniqueIdentifier>{4600d452-708d-4e8c-8516-d1f5e2db358c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -65,7 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\Data\scene.json">
-      <Filter>Assets</Filter>
+      <Filter>Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Animations\coin_idle.json">
+      <Filter>Assets\Animations</Filter>
     </None>
   </ItemGroup>
 </Project>

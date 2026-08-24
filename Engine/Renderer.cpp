@@ -135,4 +135,9 @@ namespace nu
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
+
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH) const
+    {
+
+    }
 }

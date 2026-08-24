@@ -1,6 +1,24 @@
 {
   "actors": [
     {
+      "type": "Actor",
+      "prototype": false,
+      "name": "Coin",
+      "tag": "Enemy",
+      "active": true,
+      "transform": {
+        "position": [ 200.0, 200.0 ],
+        "rotation": 0.0,
+        "scale": 1.0
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/coin.png"
+        }
+      ]
+    },
+    {
       "name": "PlayerPrototype",
       "type": "Player",
       "prototype": true,
