@@ -1,7 +1,7 @@
 #pragma once
-#include "Actor.h"
-#include "Text.h"
-#include "Font.h"
+#include "Framework/Actor.h"
+#include "Renderer/Text.h"
+#include "Renderer/Font.h"
 
 struct PlayerDesc : public nu::ActorDesc
 {

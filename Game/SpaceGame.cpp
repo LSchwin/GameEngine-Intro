@@ -1,6 +1,6 @@
 #include "SpaceGame.h"
-#include "Engine.h"
-#include "Font.h"
+#include "Engine/Engine.h"
+#include "Renderer/Font.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Bullet.h"

@@ -1,10 +1,10 @@
-#include "Engine.h"
+#include "Engine/Engine.h"
 #include "Bomb.h"
 #include "Math/MathUtils.h"
 #include "Assets.h"
 
-#include "Texture.h"
-#include "ResourceManager.h"
+#include "Renderer/Texture.h"
+#include "Resources/ResourceManager.h"
 
 FACTORY_REGISTER(Bomb)
 

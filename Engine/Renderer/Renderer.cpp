@@ -6,7 +6,7 @@
 
 #include "Texture.h"
 
-#include "Input.h"
+#include "Input/Input.h"
 
 namespace nu
 {

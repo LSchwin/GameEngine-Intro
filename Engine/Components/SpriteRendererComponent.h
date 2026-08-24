@@ -1,8 +1,8 @@
 #pragma once
 
 #include "RendererComponent.h"
-#include "Resource.h"
-#include "Texture.h"
+#include "Resources/Resource.h"
+#include "Renderer/Texture.h"
 
 namespace nu
 {

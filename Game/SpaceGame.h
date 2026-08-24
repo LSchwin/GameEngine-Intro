@@ -1,8 +1,8 @@
 #pragma once
-#include "Text.h"
-#include "Font.h"
-#include "Game.h"
-#include "ResourceManager.h"
+#include "Renderer/Text.h"
+#include "Renderer/Font.h"
+#include "Framework/Game.h"
+#include "Resources/ResourceManager.h"
 
 class SpaceGame : public nu::Game
 {

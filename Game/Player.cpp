@@ -1,5 +1,5 @@
-#include "Engine.h"
-#include "Renderer.h"
+#include "Engine/Engine.h"
+#include "Renderer/Renderer.h"
 #include "Assets.h"
 #include "SpaceGame.h"
 #include "Player.h"
@@ -7,8 +7,8 @@
 #include "Bomb.h"
 #include "AmmoPickup.h"
 
-#include "Texture.h"
-#include "ResourceManager.h"
+#include "Renderer/Texture.h"
+#include "Resources/ResourceManager.h"
 
 FACTORY_REGISTER(Player)
 

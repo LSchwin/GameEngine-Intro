@@ -1,9 +1,9 @@
 #include "Enemy.h"
 #include "Player.h"
-#include "Renderer.h"
-#include "Engine.h"
+#include "Renderer/Renderer.h"
+#include "Engine/Engine.h"
 #include "SpaceGame.h"
-#include "Random.h"
+#include "Core/Random.h"
 #include "AmmoPickup.h"
 #include "Assets.h"
 

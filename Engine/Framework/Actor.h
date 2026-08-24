@@ -1,12 +1,12 @@
 #pragma once
 #include "Object.h"
 #include "Math/Transform.h"
-#include "Model.h"
+#include "Renderer/Model.h"
 #include "Components/Component.h"
 #include <vector>
 #include <memory>
 
-#include "ResourceManager.h"
+#include "Resources/ResourceManager.h"
 
 namespace nu
 {

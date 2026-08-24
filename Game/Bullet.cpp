@@ -1,7 +1,7 @@
 #include "Bullet.h"
 #include "Math/MathUtils.h"
-#include "Renderer.h"
-#include "Factory.h"
+#include "Renderer/Renderer.h"
+#include "Core/Factory.h"
 
 FACTORY_REGISTER(Bullet)
 

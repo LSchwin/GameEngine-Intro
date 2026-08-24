@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Actor.h"
+#include "Framework/Actor.h"
 
 struct BombDesc : public nu::ActorDesc
 {

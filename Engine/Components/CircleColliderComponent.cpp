@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "CircleColliderComponent.h"
-#include "Factory.h"
+#include "Core/Factory.h"
 
-#include "Actor.h"
+#include "Framework/Actor.h"
 
 namespace nu
 {

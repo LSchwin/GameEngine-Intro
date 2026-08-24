@@ -1,4 +1,4 @@
 #include "AmmoPickup.h"
-#include "Factory.h"
+#include "Core/Factory.h"
 
 FACTORY_REGISTER(AmmoPickup)
