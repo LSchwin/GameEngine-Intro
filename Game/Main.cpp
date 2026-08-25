@@ -17,7 +17,6 @@ int main()
     SetWorkingDirectory("assets"); 
     //NO TOUCHY
     
-
     // INITIALIZATION
     Engine::Get().Initialize();
 

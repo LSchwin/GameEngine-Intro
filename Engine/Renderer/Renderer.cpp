@@ -3,6 +3,7 @@
 #include "Math/Transform.h"
 #include "Model.h"
 #include "Math/MathUtils.h"
+#include "Math/Rect.h"
 
 #include "Texture.h"
 
@@ -138,6 +139,20 @@ namespace nu
 
     void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH) const
     {
+        SDL_FRect sourceRect;
+        sourceRect.x = source.x;
+        sourceRect.y = source.y;
+        sourceRect.w = source.w;
+        sourceRect.h = source.h;
 
+        SDL_FRect destRect;
+        destRect.w = source.w * scale;
+        destRect.h = source.h * scale;
+
+        destRect.x = x - (destRect.w * 0.5f);
+        destRect.y = y - (destRect.h * 0.5f);
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
 }
