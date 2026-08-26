@@ -15,11 +15,11 @@ void Bomb::Update(float dt)
         nu::Vector2 forward{ 0.2f, 0.0f };
         nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * m_speed;
 
-        SetVelocity(velocity);
+        //SetVelocity(velocity);
     }
     else 
     {
-        SetVelocity({0.0f, 0.0f});
+        //SetVelocity({0.0f, 0.0f});
     }
 	
 	Actor::Update(dt);
@@ -29,8 +29,6 @@ void Bomb::OnCollision(Actor* other)
 {
     if (other->GetTag() == "Enemy")
     {
-        //SetModel(assets::bombExplosionModel);
-        //m_texture = nu::Resources().Get<nu::Texture>("textures/bombexplosion.png", nu::Engine::Get().GetRenderer());
         if (!m_exploded) m_transform.scale *= 3.0f;
         m_exploded = true;
         m_lifespan = 1.0f;

@@ -26,8 +26,7 @@
       "prototype": true,
       "tag": "Player",
       "active": true,
-      "speed": 2000.0,
-      "damping": 3.0,
+      "speed": 40.0,
       "ammo": 3,
       "transform": {
         "position": [ 640.0, 512.0 ],
@@ -42,6 +41,13 @@
         {
           "type": "CircleColliderComponent",
           "radius": 64.0
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0.0
         }
       ]
     },
@@ -52,7 +58,6 @@
       "tag": "Enemy",
       "active": true,
       "speed": 2000.0,
-      "damping": 3.0,
       "ammo": 3,
       "transform": {
         "position": [ 640.0, 512.0 ],
@@ -67,6 +72,13 @@
         {
           "type": "CircleColliderComponent",
           "radius": 64.0
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0.0
         }
       ]
     },
@@ -76,7 +88,7 @@
       "prototype": true,
       "tag": "Bullet",
       "active": true,
-      "speed": 2000.0,
+      "speed": 40.0,
       "damping": 0.0,
       "lifespan": 2.0,
       "transform": {
@@ -92,6 +104,13 @@
         {
           "type": "CircleColliderComponent",
           "radius": 24.0
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 2.0,
+          "angular_damping": 2.0,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0.0
         }
       ]
     },

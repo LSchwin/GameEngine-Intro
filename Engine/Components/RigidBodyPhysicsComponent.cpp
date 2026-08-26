@@ -27,6 +27,8 @@ namespace nu
 		m_angularAcceleration = 0.0f;
 	}
 
+
+
 	void RigidBodyPhysicsComponent::ApplyForce(const Vector2& force)
 	{
 		m_acceleration += force / m_mass;
@@ -64,6 +66,17 @@ namespace nu
 	Vector2 RigidBodyPhysicsComponent::GetPosition() const
 	{
 		return GetOwner()->GetTransform().position;
+	}
+
+
+	void RigidBodyPhysicsComponent::SetRotation(float rotation)
+	{
+		GetOwner()->SetRotation(rotation);
+	}
+
+	float RigidBodyPhysicsComponent::GetRotation() const
+	{
+		return GetOwner()->GetTransform().rotation;
 	}
 
 	void RigidBodyPhysicsComponent::Read(const json::value_t& value)

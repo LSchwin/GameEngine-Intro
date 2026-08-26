@@ -7,6 +7,8 @@
 #include "AmmoPickup.h"
 #include "Assets.h"
 
+#include "Components/PhysicsComponent.h"
+
 #include <iostream>
 
 FACTORY_REGISTER(Enemy)
@@ -16,21 +18,22 @@ void Enemy::Update(float dt)
     Player* player = m_scene->GetActorByName<Player>("PlayerPrototype");
     if (player)
     {
-        nu::Vector2 direction = player->GetTransform().position - m_transform.position;
-        float rotation = direction.Angle();
-        SetRotation(rotation * nu::RadToDeg);
+        auto physicsComponent = GetComponent<nu::PhysicsComponent>();
+        if (physicsComponent)
+        {
+            nu::Vector2 direction = player->GetTransform().position - m_transform.position;
+            float rotate = direction.Angle();
+            
+            nu::Vector2 forward{ 1, 0 };
+            nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * m_speed;
+            //forward = forward.Rotate(m_transform.rotation * nu::DegToRad); //here problem
 
-        nu::Vector2 forward{ 1, 0 };
-        forward = forward.Rotate(m_transform.rotation * nu::DegToRad);
-        AddVelocity(forward * m_speed * dt);
+            physicsComponent->ApplyForce(forward);
+            physicsComponent->SetRotation(rotate);
+        }
     }
 
-    float thrust = 0.0f;
-    float rotate = 0.0f;
-
-    nu::Vector2 forward{ 1, 0 };
-    nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * thrust;
-    AddVelocity(velocity * dt);
+    //AddVelocity(velocity * dt);
 
     Actor::Update(dt);
 }
