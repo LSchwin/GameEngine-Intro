@@ -26,6 +26,9 @@ namespace nu
 		friend class PhysicsBody;
 
 	private:
+		void ProcessCollisionEvents();
+
+	private:
 		b2WorldId m_worldId;
 	};
 }

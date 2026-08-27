@@ -2,6 +2,8 @@
 #include <rapidjson/document.h>
 #include <string>
 
+#include <vector>
+
 #include "Math/Vector2.h"
 #include "Math/Vector3.h"
 
@@ -34,4 +36,5 @@ namespace nu::json
 	bool Read(const value_t& value, const std::string& name, Vector2& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, Vector3& data, bool required = false);
 
+	bool Read(const value_t& value, const std::string& name, std::vector<int>& data, bool required = false);
 }

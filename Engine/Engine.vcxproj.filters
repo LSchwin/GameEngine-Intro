@@ -159,9 +159,6 @@
     <ClInclude Include="Serialization\JSON.h">
       <Filter>Serialization</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteAnimationRendererComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Components\PhysicsComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -172,6 +169,15 @@
       <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="Components\Box2DPhysicsComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Tilemap.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\TilemapRendererComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimationRendererComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -239,9 +245,6 @@
     <ClCompile Include="Serialization\JSON.cpp">
       <Filter>Serialization</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteAnimationRendererComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Components\PhysicsComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -252,6 +255,15 @@
       <Filter>Physics</Filter>
     </ClCompile>
     <ClCompile Include="Components\Box2DPhysicsComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Tilemap.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\TilemapRendererComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteAnimationRendererComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

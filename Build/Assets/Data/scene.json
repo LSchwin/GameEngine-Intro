@@ -6,6 +6,7 @@
       "name": "Coin",
       "tag": "Enemy",
       "active": true,
+      "persistent": true,
       "transform": {
         "position": [ 200.0, 200.0 ],
         "rotation": 0.0,
@@ -17,6 +18,25 @@
           "texture_frames": "Animations/coin_idle.json",
           "frames_per_second": 12.0,
           "loop": true
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "prototype": false,
+      "name": "Tilemap",
+      "tag": "Ground",
+      "active": true,
+      "persistent": true,
+      "transform": {
+        "position": [ 0.0, 0.0 ],
+        "rotation": 0.0,
+        "scale": 3.0
+      },
+      "components": [
+        {
+          "type": "TilemapRendererComponent",
+          "tilemap_name": "tilemaps/world.json"
         }
       ]
     },
@@ -37,10 +57,6 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/player.png"
-        },
-        {
-          "type": "CircleColliderComponent",
-          "radius": 64.0
         },
         {
           "type": "Box2DPhysicsComponent",
@@ -68,10 +84,6 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/enemy.png"
-        },
-        {
-          "type": "CircleColliderComponent",
-          "radius": 64.0
         },
         {
           "type": "Box2DPhysicsComponent",
@@ -102,15 +114,12 @@
           "texture": "textures/bullet.png"
         },
         {
-          "type": "CircleColliderComponent",
-          "radius": 24.0
-        },
-        {
           "type": "Box2DPhysicsComponent",
           "linear_damping": 2.0,
           "angular_damping": 2.0,
           "size": [ 48, 48 ],
-          "gravity_scale": 0.0
+          "gravity_scale": 0.0,
+          "is_sensor": true
         }
       ]
     },
@@ -133,10 +142,6 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/bomb.png"
-        },
-        {
-          "type": "CircleColliderComponent",
-          "radius": 64.0
         }
       ]
     },
@@ -158,10 +163,6 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/pickup.png"
-        },
-        {
-          "type": "CircleColliderComponent",
-          "radius": 24.0
         }
       ]
     }
