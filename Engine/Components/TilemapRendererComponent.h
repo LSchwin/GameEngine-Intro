@@ -10,11 +10,10 @@ namespace nu
 	public:
 		TilemapRendererComponent() = default;
 		TilemapRendererComponent(const TilemapRendererComponent& other);
-		
+
 		CLASS_PROTOTYPE(TilemapRendererComponent)
 
-
-		void Start() override;
+			void Start() override;
 		void Draw(const Renderer& renderer) override;
 
 		void Read(const json::value_t& value) override;

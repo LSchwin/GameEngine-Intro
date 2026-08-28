@@ -85,10 +85,11 @@ namespace nu
 		};
 	}
 
-	Vector2 Tilemap::GetTilePosition(const Layer& layer)
+	Vector2 Tilemap::GetTilePosition(const Layer& layer, int tileIndex)
 	{
-		return Vector2();
+		int column = tileIndex % layer.width;
+		int row = tileIndex / layer.width;
+
+		return Vector2{ (float)(column * m_tileWidth), (float)(row * m_tileHeight) };
 	}
-
-
 }

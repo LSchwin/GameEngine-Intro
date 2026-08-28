@@ -36,7 +36,7 @@
                 {
                  "name":"texture_name",
                  "type":"string",
-                 "value":"tilemap.png"
+                 "value":"textures/tilemap.png"
                 }],
          "type":"tilelayer",
          "visible":true,
