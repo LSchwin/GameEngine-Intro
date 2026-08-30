@@ -139,6 +139,7 @@ namespace nu
 
     void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH) const
     {
+        //Celastrina Version
         SDL_FRect sourceRect;
         sourceRect.x = source.x;
         sourceRect.y = source.y;
@@ -152,7 +153,8 @@ namespace nu
         destRect.x = x - (destRect.w * 0.5f);
         destRect.y = y - (destRect.h * 0.5f);
 
-        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
-        SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+        //https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST); //this line was the only change
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, flipH ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
 }
