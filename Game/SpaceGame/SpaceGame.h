@@ -18,7 +18,7 @@ public:
 
 public:
 
-	static SpaceGame& Get() { static SpaceGame game; return game; }
+	//static SpaceGame& Get() { static SpaceGame game; return game; }
 
 	SpaceGame() = default;
 	SpaceGame(nu::Scene* scene) :

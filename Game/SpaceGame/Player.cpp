@@ -118,21 +118,21 @@ void Player::Draw(const nu::Renderer& renderer) const
 {
 
 
-    switch (SpaceGame::Get().m_gameState)
-    {
-    case SpaceGame::GameState::Title:
-        break;
-    case SpaceGame::GameState::StartGame:
-    case SpaceGame::GameState::StartLevel:
-    case SpaceGame::GameState::Game:
-        //m_ammoText->Create(nu::Engine::Get().GetRenderer(), "Bombs: " + std::to_string(m_ammo), { 1.0f, 1.0f, 1.0f });
-        //m_ammoText->Draw(renderer, 30, 100);
-        break;
-    case SpaceGame::GameState::GameOver:
-        break;
-    default:
-        break;
-    }
+    //switch (SpaceGame::Get().m_gameState)
+    //{
+    //case SpaceGame::GameState::Title:
+    //    break;
+    //case SpaceGame::GameState::StartGame:
+    //case SpaceGame::GameState::StartLevel:
+    //case SpaceGame::GameState::Game:
+    //    //m_ammoText->Create(nu::Engine::Get().GetRenderer(), "Bombs: " + std::to_string(m_ammo), { 1.0f, 1.0f, 1.0f });
+    //    //m_ammoText->Draw(renderer, 30, 100);
+    //    break;
+    //case SpaceGame::GameState::GameOver:
+    //    break;
+    //default:
+    //    break;
+    //}
 
 
     //if (m_model)
