@@ -180,6 +180,9 @@
     <ClInclude Include="Components\SpriteAnimationRendererComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Components\SpriteAnimatorRendererComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -264,6 +267,9 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Components\SpriteAnimationRendererComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteAnimatorRendererComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

@@ -17,7 +17,7 @@ bool SpriteGame::Initialize()
 
     m_scene = std::make_unique<Scene>();
     m_scene->SetGame(this);
-    m_scene->Load("data/scene.json");
+    m_scene->Load("scenes/scene.json");
     
     Engine::Get().GetAudio().AddSound("laser", "audio/laser.wav"); //add some more sounds later
     Engine::Get().GetAudio().AddSound("bomb", "audio/Blaster.wav"); //add some more sounds later

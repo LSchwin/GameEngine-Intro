@@ -14,10 +14,16 @@
       },
       "components": [
         {
-          "type": "SpriteAnimationRendererComponent",
-          "texture_frames": "Animations/coin_idle.json",
-          "frames_per_second": 12.0,
-          "loop": true
+          "type": "SpriteAnimatorRendererComponent",
+          "default_animation": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "texture_frames": "Animations/coin_idle.json",
+              "frames_per_second": 12.0,
+              "loop": true
+            }
+          ]
         }
       ]
     },
