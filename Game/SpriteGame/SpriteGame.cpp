@@ -1,7 +1,7 @@
 #include "SpriteGame.h"
 #include "Engine/Engine.h"
 #include "Renderer/Font.h"
-//#include "SpriteGame/Player.h"
+#include "PlayerController.h"
 //#include "SpriteGame/Enemy.h"
 //#include "SpriteGame/Bullet.h"
 //#include "SpriteGame/Bomb.h"
@@ -64,6 +64,9 @@ void SpriteGame::Update(float dt)
             break;
         }
         m_scene->RemoveAllActors();
+        m_scene->Load("scenes/level.json");
+
+
         SpawnPlayer();
         m_gameState = GameState::Game;
         break;
@@ -93,6 +96,8 @@ void SpriteGame::Update(float dt)
 
 void SpriteGame::Draw(nu::Renderer& renderer)
 {
+    renderer.EnableCamera(false);
+
     renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/background.png", renderer), 600.0f, 600.0f, 0.0f, 10.0f);
     
     switch (m_gameState)
@@ -119,23 +124,24 @@ void SpriteGame::Draw(nu::Renderer& renderer)
         break;
     }
 
+    renderer.EnableCamera();
     Game::Draw(renderer);
 }
 
 void SpriteGame::SpawnPlayer()
 {
-    //auto player = Factory::Instance().Create<Player>("PlayerPrototype");
-    //m_scene->AddActor(std::move(player));
+    auto player = Factory::Instance().Create<Actor>("PlayerPrototype");
+    m_scene->AddActor(std::move(player));
 }
 
 void SpriteGame::SpawnEnemy()
 {
-    //m_spawnTimerMin = (m_spawnTimerMin <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMin - 0.5f;
-    //m_spawnTimerMin = (m_spawnTimerMax <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMax - 0.5f;
-    //
-    //auto enemy = Factory::Instance().Create<Enemy>("EnemyPrototype");
-    //enemy->SetPosition({ nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()) });
-    //m_scene->AddActor(std::move(enemy));
+    m_spawnTimerMin = (m_spawnTimerMin <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMin - 0.5f;
+    m_spawnTimerMin = (m_spawnTimerMax <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMax - 0.5f;
+    
+    auto enemy = Factory::Instance().Create<Actor>("FlyingEnemyPrototype");
+    enemy->SetPosition({ nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()) });
+    m_scene->AddActor(std::move(enemy));
 }
 
 void SpriteGame::onPlayerDead()
