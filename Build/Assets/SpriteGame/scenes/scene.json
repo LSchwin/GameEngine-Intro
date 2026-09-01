@@ -10,7 +10,7 @@
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
-        "scale": 1.0
+        "scale": 3.0
       },
       "components": [
         {
@@ -19,7 +19,25 @@
           "animations": [
             {
               "name": "idle",
-              "texture_frames": "Animations/coin_idle.json",
+              "texture_frames": "Animations/player_idle.json",
+              "frames_per_second": 2.0,
+              "loop": true
+            },
+            {
+              "name": "run",
+              "texture_frames": "Animations/player_run.json",
+              "frames_per_second": 12.0,
+              "loop": true
+            },
+            {
+              "name": "fall",
+              "texture_frames": "Animations/player_jump.json",
+              "frames_per_second": 12.0,
+              "loop": false
+            },
+            {
+              "name": "jump",
+              "texture_frames": "Animations/player_flip.json",
               "frames_per_second": 12.0,
               "loop": true
             }
@@ -32,7 +50,8 @@
           "shape": "capsule",
           "size": [ 36, 48 ],
           "constrain_angle": true,
-          "gravity_scale": 1.0
+          "restitution": 0.0,
+          "gravity_scale": 1.5
         }
       ]
     },
@@ -51,11 +70,11 @@
       "components": [
         {
           "type": "SpriteAnimatorRendererComponent",
-          "default_animation": "idle",
+          "default_animation": "run",
           "animations": [
             {
-              "name": "idle",
-              "texture_frames": "Animations/coin_idle.json",
+              "name": "run",
+              "texture_frames": "Animations/player_run.json",
               "frames_per_second": 12.0,
               "loop": true
             }

@@ -18,7 +18,7 @@ namespace nu
 		const Vector2& GetSize() const { return m_size; }
 
 		bool GetFlipH() const { return m_flipH; }
-		void SetFlipH(bool flipH = true) { flipH = true; }
+		void SetFlipH(bool flipH = true) { m_flipH = flipH; }
 
 		virtual void Read(const json::value_t& value) override;
 

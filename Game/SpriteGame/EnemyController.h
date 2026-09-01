@@ -20,5 +20,6 @@ class EnemyController : public nu::Actor
 protected:
 	nu::PhysicsComponent* m_physicsComponent{ nullptr };
 	nu::SpriteAnimatorRendererComponent* m_rendererComponent = nullptr;
+	float m_dir = 1.0f;
 };
 

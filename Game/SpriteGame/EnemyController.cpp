@@ -35,14 +35,15 @@ void EnemyController::Update(float dt)
 	if (dir != 0)
 	{
 		velocity.x = dir * 100.0f;
-		//m_rendererComponent->Play("run");
+		m_rendererComponent->Play("run");
+		m_dir = dir;
 	}
 	else
 	{
 		m_rendererComponent->Play("idle");
 	}
 
-	m_rendererComponent->SetFlipH(dir < 0);
+	m_rendererComponent->SetFlipH(m_dir < 0);
 
 	m_physicsComponent->SetVelocity(velocity);
 

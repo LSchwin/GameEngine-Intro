@@ -22,23 +22,27 @@ void PlayerController::Update(float dt)
 	float dir = 0;
 	if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_A)) dir = -1.0;
 	if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) dir = +1.0;
-	if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE))
+	if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE) && m_grounded)
 	{
-		velocity.y = -300.0f;
+		velocity.y = -800.0f;
+		m_grounded = false;
+		m_jumping = true;
 	}
 
 	if (dir != 0)
 	{
 		velocity.x = dir * 500.0f;
-		//m_rendererComponent->Play("run");
-
+		if (m_grounded == true) m_rendererComponent->Play("run");
+		m_dir = dir;
 	}
-	else
-	{
-		m_rendererComponent->Play("idle");
-	}
+	else if (m_grounded == true) m_rendererComponent->Play("idle");
+	
+	if (m_grounded == false && m_jumping) m_rendererComponent->Play("jump");
+	else if (m_grounded == false && m_jumping == false) m_rendererComponent->Play("fall");
+	
+	//if ((m_physicsComponent->GetVelocity().y > 0.01f) && (m_jumping == false)) m_rendererComponent->Play("fall");
 
-	m_rendererComponent->SetFlipH(dir < 0);
+	m_rendererComponent->SetFlipH(m_dir < 0);
 
 	m_physicsComponent->SetVelocity(velocity);
 	nu::Engine::Get().GetRenderer().SetCamera(m_physicsComponent->GetPosition());
@@ -48,6 +52,11 @@ void PlayerController::Update(float dt)
 
 void PlayerController::OnCollision(nu::Actor* other)
 {
+	if (other->GetTag() == "Ground")
+	{
+		m_grounded = true;
+		m_jumping = false;
+	}
 }
 
 void PlayerController::Read(const nu::json::value_t& value)

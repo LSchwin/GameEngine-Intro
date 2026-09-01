@@ -68,6 +68,9 @@ namespace nu
 
         bool GetPersistent() const { return m_persistent; }
 
+        bool GetGrounded() const { return m_grounded; }
+        bool SetGrounded(bool grounded) { m_grounded = grounded; }
+
         virtual void Read(const json::value_t& value) override;
 
         void AddComponent(std::unique_ptr<Component> component);
@@ -84,6 +87,8 @@ namespace nu
         float m_lifespan{ 0.0f };
         bool m_destroyed{ false };
         bool m_persistent{ false };
+
+        bool m_grounded = false;
 
         std::vector<std::unique_ptr<Component>> m_components;
         

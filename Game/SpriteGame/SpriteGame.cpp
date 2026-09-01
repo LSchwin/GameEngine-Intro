@@ -27,7 +27,7 @@ bool SpriteGame::Initialize()
     nu::Engine::Get().GetAudio().PlaySound("MusicLoop");
     
     m_titleText = new Text(Resources().GetWithID<Font>("title_font", "fonts/Tildunk.ttf", 64.0f)); //get with ID
-    m_titleText->Create(Engine::Get().GetRenderer(), "SPAAAAAAAACE", Color{ 1.0f, 1.0f, 1.0f });
+    m_titleText->Create(Engine::Get().GetRenderer(), "SPRITE GAME", Color{ 1.0f, 1.0f, 1.0f });
     
     m_gameFont = Resources().GetWithID<Font>("game_font", "fonts/Tildunk.ttf", 32.0f);
     
@@ -139,7 +139,7 @@ void SpriteGame::SpawnEnemy()
     m_spawnTimerMin = (m_spawnTimerMin <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMin - 0.5f;
     m_spawnTimerMin = (m_spawnTimerMax <= 0) ? RandomFloat(0.1f, 0.4f) : m_spawnTimerMax - 0.5f;
     
-    auto enemy = Factory::Instance().Create<Actor>("FlyingEnemyPrototype");
+    auto enemy = Factory::Instance().Create<Actor>("EnemyPrototype");
     enemy->SetPosition({ nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()), nu::RandomFloat((float)nu::Engine::Get().GetRenderer().GetWidth()) });
     m_scene->AddActor(std::move(enemy));
 }

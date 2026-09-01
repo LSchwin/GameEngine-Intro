@@ -94,6 +94,9 @@
     <None Include="..\Build\Assets\SpaceGame\Data\scene.json">
       <Filter>Assets\SpaceGame\Scenes</Filter>
     </None>
+    <None Include="..\Build\Assets\SpriteGame\Animations\player_flip.json">
+      <Filter>Assets\SpriteGame\Animations</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpaceGame\AmmoPickup.h">

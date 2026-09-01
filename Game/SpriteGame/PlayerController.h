@@ -21,6 +21,10 @@ public:
 protected:
 	nu::PhysicsComponent* m_physicsComponent{ nullptr };
 	nu::SpriteAnimatorRendererComponent* m_rendererComponent = nullptr;
+
+	float m_dir = 1.0f;
+
+	bool m_jumping = false; //move this to a player state enum thing
 };
 
 
