@@ -1,5 +1,5 @@
 #pragma once
-#include "Framework\Actor.h"
+#include "CharacterBase.h"
 
 namespace nu 
 {
@@ -7,7 +7,7 @@ namespace nu
 	class SpriteAnimatorRendererComponent;
 }
 
-class PlayerController : public nu::Actor
+class PlayerController : public CharacterBase
 {
 public:
 	CLASS_PROTOTYPE(PlayerController)
@@ -23,6 +23,9 @@ protected:
 	nu::SpriteAnimatorRendererComponent* m_rendererComponent = nullptr;
 
 	float m_dir = 1.0f;
+	int nextAttack = 1;
+
+	float attackTimer = 2.0f;
 
 	bool m_jumping = false; //move this to a player state enum thing
 };

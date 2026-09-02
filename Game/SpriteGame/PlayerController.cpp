@@ -2,6 +2,7 @@
 #include "Components/PhysicsComponent.h"
 #include "Components/SpriteAnimatorRendererComponent.h"
 #include "Engine/Engine.h"
+#include "Damager.h"
 
 FACTORY_REGISTER(PlayerController)
 
@@ -19,34 +20,88 @@ void PlayerController::Update(float dt)
 {
 	nu::Vector2 velocity = m_physicsComponent->GetVelocity();
 
-	float dir = 0;
-	if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_A)) dir = -1.0;
-	if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) dir = +1.0;
-	if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE) && m_grounded)
+	switch (m_state)
 	{
-		velocity.y = -800.0f;
-		m_grounded = false;
-		m_jumping = true;
+	case CharacterBase::State::Move:
+	{
+		float dir = 0;
+		if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_A)) dir = -1.0;
+		if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) dir = +1.0;
+		if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE) && m_grounded)
+		{
+			velocity.y = -2000.0f;
+			m_grounded = false;
+			m_jumping = true;
+		}
+
+		if (dir != 0)
+		{
+			velocity.x = dir * 500.0f;
+			if (m_grounded == true) m_rendererComponent->Play("run");
+			m_dir = dir;
+			m_rendererComponent->SetFlipH(m_dir < 0);
+		}
+		else if (m_grounded == true) m_rendererComponent->Play("idle");
+
+		if (m_grounded == false && m_jumping) m_rendererComponent->Play("jump");
+		else if (m_grounded == false && m_jumping == false) m_rendererComponent->Play("fall");
+
+		//if ((m_physicsComponent->GetVelocity().y > 0.01f) && (m_jumping == false)) m_rendererComponent->Play("fall");
+
+
+		if (nu::Engine::Get().GetInput().GetButtonDown(nu::Input::MouseButton::Left))
+		{
+			attackTimer = 2;
+			m_state = State::Attack;
+			m_rendererComponent->SetOffset(101.0f);
+
+			std::string temp1 = (m_grounded) ? "ground" : "air";
+			std::string temp2 = "_attack";
+			std::string temp3 = std::to_string(nextAttack);
+			m_rendererComponent->Play(temp1 + temp2 + temp3);
+		}
+
+	}
+		break;
+	case CharacterBase::State::Attack:
+	{
+		if (m_rendererComponent->IsAnimationDone())
+		{
+			m_state = State::Move;
+			m_rendererComponent->SetOffset(0.0f);
+			m_rendererComponent->Play("idle");
+
+			auto damager = nu::Factory::Instance().Create<nu::Actor>("DamagerPrototype");
+			damager->SetPosition(GetTransform().position + nu::Vector2{ 50.0f * m_dir, 0.0f });
+			damager->SetTag("PlayerDamager");
+			damager->SetScale(2.0f);
+			m_scene->AddActor(std::move(damager));
+
+			nextAttack = (nextAttack++ % 3) + 1;
+		}
+		
+	}
+		break;
+	case CharacterBase::State::Hit:
+
+		break;
+	case CharacterBase::State::Death:
+
+		break;
+	default:
+
+		break;
 	}
 
-	if (dir != 0)
+	attackTimer -= dt;
+	if (attackTimer <= 0)
 	{
-		velocity.x = dir * 500.0f;
-		if (m_grounded == true) m_rendererComponent->Play("run");
-		m_dir = dir;
+		attackTimer = 2.0f;
+		nextAttack = 1;
 	}
-	else if (m_grounded == true) m_rendererComponent->Play("idle");
-	
-	if (m_grounded == false && m_jumping) m_rendererComponent->Play("jump");
-	else if (m_grounded == false && m_jumping == false) m_rendererComponent->Play("fall");
-	
-	//if ((m_physicsComponent->GetVelocity().y > 0.01f) && (m_jumping == false)) m_rendererComponent->Play("fall");
-
-	m_rendererComponent->SetFlipH(m_dir < 0);
 
 	m_physicsComponent->SetVelocity(velocity);
 	nu::Engine::Get().GetRenderer().SetCamera(m_physicsComponent->GetPosition());
-
 	Actor::Update(dt);
 }
 

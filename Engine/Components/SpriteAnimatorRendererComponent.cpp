@@ -108,4 +108,9 @@ namespace nu
 
 	}
 
+	bool SpriteAnimatorRendererComponent::IsAnimationDone() const
+	{
+		return (m_frame == m_spriteAnimation.textureFrames->GetTotalFrames() - 1);
+	}
+
 }

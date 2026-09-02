@@ -35,14 +35,8 @@ namespace nu
 
         for (auto& component : m_components)
         {
-            component->Update(dt);
-        }
-
-        // movement
-        //m_transform.position += (m_velocity * dt);
-        //m_velocity *= 1.0f / ((1.0f) + m_damping * dt);
-        //
-        
+            if (component->IsActive()) component->Update(dt);
+        } 
     }
 
     void Actor::Draw(const Renderer& renderer) const
@@ -52,7 +46,7 @@ namespace nu
             auto rendererComponent = dynamic_cast<RendererComponent*>(component.get());
             if (rendererComponent)
             {
-                rendererComponent->Draw(renderer);            
+                if (component->IsActive()) rendererComponent->Draw(renderer);
             }
         }
     }

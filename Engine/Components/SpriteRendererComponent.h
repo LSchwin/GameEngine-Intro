@@ -20,6 +20,9 @@ namespace nu
 		bool GetFlipH() const { return m_flipH; }
 		void SetFlipH(bool flipH = true) { m_flipH = flipH; }
 
+		float GetOffset() const { return m_offset; }
+		void SetOffset(float offset) { m_offset = offset; }
+
 		virtual void Read(const json::value_t& value) override;
 
 	protected:
@@ -27,6 +30,10 @@ namespace nu
 		Rect m_sourceRect;
 		Vector2 m_size{ 0.0f, 0.0f };
 		bool m_flipH = false;
+
+		Vector2 m_origin{ 0.5f, 0.5f };
+
+		float m_offset = 0.0f;
 
 		res_t<Texture> m_texture;
 	};

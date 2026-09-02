@@ -29,6 +29,11 @@ namespace nu
 
 		void Read(const json::value_t& value) override;
 
+		unsigned int GetFrame() const { return m_frame; }
+		bool IsAnimationDone() const;
+
+		const std::string& GetAnimationName() const { return m_spriteAnimation.name; }
+
 	private:
 		unsigned int m_frame = 0;
 		float m_frameTimer = 0.0;

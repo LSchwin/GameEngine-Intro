@@ -123,7 +123,7 @@ namespace nu
         }
     }
 
-    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipH) const
+    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipH, const Vector2& origin, float offset) const
     {
         Vector2 size = texture.GetSize();
 
@@ -134,14 +134,14 @@ namespace nu
         destRect.w = size.x * scale;
         destRect.h = size.y * scale;
 
-        destRect.x = (x - cameraX) - (destRect.w * 0.5f);
-        destRect.y = (y - cameraY) - (destRect.h * 0.5f);
+        destRect.x = (x - cameraX) - (destRect.w * origin.x) - (offset * (flipH ? 1 : -1));
+        destRect.y = (y - cameraY) - (destRect.h * origin.y);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
 
-    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH) const
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH, const Vector2& origin, float offset) const
     {
         float cameraX = (m_cameraEnabled) ? (m_camera.x - m_width * 0.5f) : 0.0f;
         float cameraY = (m_cameraEnabled) ? (m_camera.y - m_height * 0.5f) : 0.0f;
@@ -157,8 +157,9 @@ namespace nu
         destRect.w = source.w * scale;
         destRect.h = source.h * scale;
 
-        destRect.x = (x - cameraX) - (destRect.w * 0.5f);
-        destRect.y = (y - cameraY) - (destRect.h * 0.5f);
+        destRect.x = (x - cameraX) - (destRect.w * origin.x) - (offset * (flipH ? 1 : -1));
+        destRect.y = (y - cameraY) - (destRect.h * origin.y);
+
 
         //https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST); //this line was the only change

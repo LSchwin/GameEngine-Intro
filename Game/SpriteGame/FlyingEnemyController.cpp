@@ -7,7 +7,7 @@ FACTORY_REGISTER(FlyingEnemyController)
 
 void FlyingEnemyController::Start()
 {
-	Actor::Start();
+	CharacterBase::Start();
 
 	m_physicsComponent = GetComponent<nu::PhysicsComponent>();
 	assert(m_physicsComponent);
@@ -39,14 +39,15 @@ void FlyingEnemyController::Update(float dt)
 	
 
 
-	Actor::Update(dt);
+	CharacterBase::Update(dt);
 }
 
 void FlyingEnemyController::OnCollision(nu::Actor* other)
 {
+
 }
 
 void FlyingEnemyController::Read(const nu::json::value_t& value)
 {
-	Actor::Read(value);
+	CharacterBase::Read(value);
 }
