@@ -9,6 +9,7 @@
 
 --Games--
 - There are two games included: 
+
   First is the Asteroids-like SpaceGame, where you survive a never-ending onslaught of enemies in the heart of the milky way! (uses some depreciated features, so I wont get into it)
 
   Second is knockback-focused wave survival game, where you must knock enemies into the void before you yourself feed it!
