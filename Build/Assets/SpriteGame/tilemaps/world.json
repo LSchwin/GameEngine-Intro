@@ -218,7 +218,7 @@
                 {
                  "name":"texture_name",
                  "type":"string",
-                 "value":"textures\/cyber.png"
+                 "value":"textures\\cyber.png"
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -290,7 +290,7 @@
                 {
                  "name":"texture_name",
                  "type":"string",
-                 "value":"texturescyber.png"
+                 "value":"textures\\cyber.png"
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -362,7 +362,7 @@
                 {
                  "name":"texture_name",
                  "type":"string",
-                 "value":"textures\/cyber.png"
+                 "value":"textures\\cyber.png"
                 }],
          "type":"tilelayer",
          "visible":true,
