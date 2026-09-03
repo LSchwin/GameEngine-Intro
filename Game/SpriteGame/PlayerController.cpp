@@ -79,6 +79,7 @@ void PlayerController::Update(float dt)
 			damager->SetTag("PlayerDamager");
 			damager->SetScale(2.0f);
 			damager->SetDirection(m_dir);
+			damager->SetDamage(5.0f);
 			m_scene->AddActor(std::move(damager));
 
 			nextAttack = (nextAttack++ % 3) + 1;

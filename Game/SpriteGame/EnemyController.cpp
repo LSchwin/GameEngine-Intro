@@ -19,6 +19,8 @@ void EnemyController::Start()
 
 void EnemyController::Update(float dt)
 {
+	m_timeAlive += dt;
+
 	nu::Vector2 velocity = m_physicsComponent->GetVelocity();
 
 	float dir = 0;
@@ -88,7 +90,7 @@ void EnemyController::Update(float dt)
 		//m_rendererComponent->Play("death"); //this is where I'd put my death animation... IF I HAD ONEEE
 		if (m_rendererComponent->IsAnimationDone())
 		{
-			((SpriteGame*)(m_scene->GetGame()))->AddPoints(100);
+			if (m_timeAlive > 1.0f) ((SpriteGame*)(m_scene->GetGame()))->AddPoints(100);
 			SetDestroyed();
 		}
 	}
@@ -96,9 +98,6 @@ void EnemyController::Update(float dt)
 	default:
 		break;
 	}
-
-	
-
 
 	m_physicsComponent->SetVelocity(velocity);
 	CharacterBase::Update(dt);

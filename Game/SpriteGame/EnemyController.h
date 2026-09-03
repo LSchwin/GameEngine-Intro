@@ -21,5 +21,7 @@ protected:
 	nu::PhysicsComponent* m_physicsComponent{ nullptr };
 	nu::SpriteAnimatorRendererComponent* m_rendererComponent = nullptr;
 	float m_dir = 1.0f;
+
+	float m_timeAlive = 0.0f;
 };
 

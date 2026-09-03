@@ -75,7 +75,7 @@ namespace nu
 				int tileId = layer.data[i];
 
 				if (tileId == 0) continue; // don't draw if tile ids = 0
-
+				
 				// get source rect of tile id
 				Rect sourceRect = m_tilemap->GetTileRect(layer, tileId);
 

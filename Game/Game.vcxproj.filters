@@ -106,6 +106,9 @@
     <None Include="..\Build\Assets\SpriteGame\tilemaps\worldOLD.json">
       <Filter>Assets\SpriteGame\Tilemaps</Filter>
     </None>
+    <None Include="..\Build\Assets\SpriteGame\tilemaps\world_death.json">
+      <Filter>Assets\SpriteGame\Tilemaps</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpaceGame\AmmoPickup.h">

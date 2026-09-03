@@ -36,34 +36,7 @@
         {
           "type": "TilemapRendererComponent",
           "active": false,
-          "tilemap_name": "tilemaps/world_death.tmj"
-        }
-      ]
-    },
-    {
-      "type": "Actor",
-      "prototype": false,
-      "name": "Coin",
-      "tag": "Enemy",
-      "active": true,
-      "persistent": true,
-      "transform": {
-        "position": [ 200.0, 200.0 ],
-        "rotation": 0.0,
-        "scale": 1.0
-      },
-      "components": [
-        {
-          "type": "SpriteAnimatorRendererComponent",
-          "default_animation": "idle",
-          "animations": [
-            {
-              "name": "idle",
-              "texture_frames": "Animations/coin_idle.json",
-              "frames_per_second": 12.0,
-              "loop": true
-            }
-          ]
+          "tilemap_name": "tilemaps/world_death.json"
         }
       ]
     }

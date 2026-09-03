@@ -99,7 +99,7 @@
       "tag": "Enemy",
       "active": true,
       "speed": 40.0,
-      "health": 15.0,
+      "health": 25.0,
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
@@ -202,7 +202,7 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/damager.png",
-          "active": true
+          "active": false
         },
         {
           "type": "Box2DPhysicsComponent",

@@ -95,9 +95,11 @@ void SpriteGame::Update(float dt)
 void SpriteGame::Draw(nu::Renderer& renderer)
 {
     renderer.EnableCamera(false);
-
     renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/background.png", renderer), 970.0f, 520.0f, 0.0f, 1.0f);
-    
+
+    renderer.EnableCamera();
+    Game::Draw(renderer);
+
     switch (m_gameState)
     {
     case GameState::Title:
@@ -129,7 +131,6 @@ void SpriteGame::Draw(nu::Renderer& renderer)
     }
 
     renderer.EnableCamera();
-    Game::Draw(renderer);
 }
 
 void SpriteGame::SpawnPlayer()
