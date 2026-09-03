@@ -18,7 +18,9 @@
 SpriteGame CONTROLS
 -------------------
 A, D : Move left and right respectively
+
 Spacebar : Jump
+
 Left-Click : Sword Attack (Click Multiple times in succession to unleash a powerful 3-hit combo!)
 
 SpriteGame CREDITS
