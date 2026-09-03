@@ -8,10 +8,20 @@
   SDL3, rapidjson, FMOD, and Box2D
 
 --Games--
-- There are two games included:
-  First is the Asteroids-like SpaceGame, where you survive a never-ending onslaught of enemies in the heart of the milky way!
-  
-  
+- There are two games included: 
+  First is the Asteroids-like SpaceGame, where you survive a never-ending onslaught of enemies in the heart of the milky way! (uses some depreciated features, so I wont get into it)
+  Second is knockback-focused wave survival game, where you must knock enemies into the void before you yourself feed it!
 
+SpriteGame CONTROLS
+-------------------
+A, D : Move left and right respectively
+Spacebar : Jump
+Left-Click : Sword Attack (Click Multiple times in succession to unleash a powerful 3-hit combo!)
 
-Click Multiple times in succession to unleash a powerful 3-hit combo!
+SpriteGame CREDITS
+------------------
+Player Art: https://pixramen.itch.io/2d-action-platformer-sci-fi-vagabond
+Music: Made by https://soundcloud.com/string_cheese
+Background: https://seeone.itch.io/dead-city-bg
+Tileset: https://wibuka.itch.io/tileset-pixel-16x16
+
