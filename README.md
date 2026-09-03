@@ -2,6 +2,7 @@
 -----------------------
 --About--
 - This free to download game engine was made for my Intro To Game Programming Class.
+- This is a component-based engine made in C++.
 
 --ThirdParty--
 - The third party libraries include:
