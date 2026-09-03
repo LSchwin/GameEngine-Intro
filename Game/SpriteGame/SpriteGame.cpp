@@ -2,10 +2,6 @@
 #include "Engine/Engine.h"
 #include "Renderer/Font.h"
 #include "PlayerController.h"
-//#include "SpriteGame/Enemy.h"
-//#include "SpriteGame/Bullet.h"
-//#include "SpriteGame/Bomb.h"
-//#include "SpriteGame/Assets.h"
 #include <memory>
 
 using namespace nu;

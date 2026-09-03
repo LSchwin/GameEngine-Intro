@@ -5,10 +5,11 @@
     ],
     "fileStates": {
         "cyber_tileset.tsx": {
+            "scaleInDock": 1.5,
             "scaleInEditor": 3
         },
         "ground.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 3
         },
         "test.tmj": {
@@ -25,7 +26,7 @@
         },
         "world.json": {
             "scale": 1,
-            "selectedLayer": -1,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 476.5,
                 "y": 178.5
@@ -63,18 +64,20 @@
         }
     },
     "openFiles": [
-        "ground.tsx",
-        "world.json"
+        "worldOLD.json",
+        "world.json",
+        "world_death.json"
     ],
     "project": "world.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "worldOLD.json",
+        "world_death.json",
+        "world.json",
         "world_death.tmj",
         "cyber_tileset.tsx",
         "ground.tsx",
-        "world.json",
         "tileset.tsx",
-        "test.tmj",
-        "worldOLD.json"
+        "test.tmj"
     ]
 }
