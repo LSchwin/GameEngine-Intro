@@ -74,7 +74,9 @@
     <ClCompile Include="SpriteGame\CharacterBase.cpp">
       <Filter>SpriteGame</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteGame\Damager.cpp" />
+    <ClCompile Include="SpriteGame\Damager.cpp">
+      <Filter>SpriteGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\Animations\coin_idle.json">
@@ -100,6 +102,9 @@
     </None>
     <None Include="..\Build\Assets\SpriteGame\Animations\player_flip.json">
       <Filter>Assets\SpriteGame\Animations</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\tilemaps\worldOLD.json">
+      <Filter>Assets\SpriteGame\Tilemaps</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

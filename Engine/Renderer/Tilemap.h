@@ -16,6 +16,7 @@ namespace nu
 			bool hasCollision{ false };
 			std::vector<int> data;
 			res_t<class Texture> texture;
+			std::string name;
 		};
 
 	public:

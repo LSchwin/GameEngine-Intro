@@ -31,6 +31,7 @@ namespace nu
 				JSON_READ_NAME_REQ(layerValue, "height", layer.height);
 				JSON_READ_NAME_REQ(layerValue, "width", layer.width);
 				JSON_READ_NAME_REQ(layerValue, "data", layer.data);
+				JSON_READ_NAME_REQ(layerValue, "name", layer.name);
 
 				// load texture from properties
 				if (JSON_HAS_NAME(layerValue, "properties"))

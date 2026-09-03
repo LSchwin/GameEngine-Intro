@@ -22,9 +22,6 @@ namespace nu
 			actor->Update(dt);
 		}
 
-		// update collisions
-		// UpdateCollisions();
-
 		// remove destroyed actors
 		for (auto& actor : m_actors)
 		{

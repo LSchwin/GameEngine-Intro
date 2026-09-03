@@ -16,7 +16,7 @@ namespace nu
 
 	void nu::TilemapRendererComponent::Start()
 	{
-		m_tilemap = Resources().Get<Tilemap>(m_tilemapName, Engine::Get().GetRenderer());
+		//m_tilemap = Resources().Get<Tilemap>(m_tilemapName, Engine::Get().GetRenderer()); //twice by accident
 		// load the tilemap resource
 		m_tilemap = Resources().Get<Tilemap>(m_tilemapName, Engine::Get().GetRenderer());
 		if (!m_tilemap)
@@ -36,6 +36,8 @@ namespace nu
 		// iterate through layers
 		for (auto layer : m_tilemap->GetLayers())
 		{
+			std::cout << layer.name << std::endl;
+
 			// if layer doesn't have collision, skip physics body creation
 			if (!layer.hasCollision) continue;
 
@@ -66,6 +68,7 @@ namespace nu
 		// iterate through layers
 		for (auto layer : m_tilemap->GetLayers())
 		{
+			//std:: cout << layer
 			// get layer data (array of tile ids)
 			for (int i = 0; i < layer.data.size(); i++)
 			{

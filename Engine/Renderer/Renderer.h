@@ -43,7 +43,7 @@ namespace nu
 		SDL_Renderer* m_renderer = nullptr;
 
 		bool m_cameraEnabled = true;
-		Vector2 m_camera;
+		Vector2 m_camera{ 0.0f, 0.0f };
 
 		int m_width = 0;
 		int m_height = 0;

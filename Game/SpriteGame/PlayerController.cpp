@@ -29,7 +29,7 @@ void PlayerController::Update(float dt)
 		if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) dir = +1.0;
 		if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE) && m_grounded)
 		{
-			velocity.y = -2000.0f;
+			velocity.y = -1000.0f;
 			m_grounded = false;
 			m_jumping = true;
 		}
@@ -51,7 +51,7 @@ void PlayerController::Update(float dt)
 
 		if (nu::Engine::Get().GetInput().GetButtonDown(nu::Input::MouseButton::Left))
 		{
-			attackTimer = 2;
+			attackTimer = 2.0f;
 			m_state = State::Attack;
 			m_rendererComponent->SetOffset(101.0f);
 
@@ -59,6 +59,8 @@ void PlayerController::Update(float dt)
 			std::string temp2 = "_attack";
 			std::string temp3 = std::to_string(nextAttack);
 			m_rendererComponent->Play(temp1 + temp2 + temp3);
+
+			nu::Engine::Get().GetAudio().PlaySound("laser");
 		}
 
 	}
@@ -71,10 +73,11 @@ void PlayerController::Update(float dt)
 			m_rendererComponent->SetOffset(0.0f);
 			m_rendererComponent->Play("idle");
 
-			auto damager = nu::Factory::Instance().Create<nu::Actor>("DamagerPrototype");
-			damager->SetPosition(GetTransform().position + nu::Vector2{ 50.0f * m_dir, 0.0f });
+			auto damager = nu::Factory::Instance().Create<Damager>("DamagerPrototype");
+			damager->SetPosition(GetTransform().position + nu::Vector2{ 100.0f * m_dir, 0.0f });
 			damager->SetTag("PlayerDamager");
 			damager->SetScale(2.0f);
+			damager->SetDirection(m_dir);
 			m_scene->AddActor(std::move(damager));
 
 			nextAttack = (nextAttack++ % 3) + 1;
@@ -107,10 +110,23 @@ void PlayerController::Update(float dt)
 
 void PlayerController::OnCollision(nu::Actor* other)
 {
-	if (other->GetTag() == "Ground")
+	if (other->GetTag() == "EnemyDamager")
+	{
+		Damager* damager = dynamic_cast<Damager*>(other);
+		if (damager)
+		{
+			AddPercent(damager->GetDamage());
+			m_physicsComponent->SetVelocity(nu::Vector2{ 100.0f * GetPercent() * damager->GetDirection(), 500.0f });
+		}
+	}
+	else if (other->GetTag() == "Ground")
 	{
 		m_grounded = true;
 		m_jumping = false;
+	}
+	else if (other->GetTag() == "Death")
+	{
+		m_state = State::Death;
 	}
 }
 

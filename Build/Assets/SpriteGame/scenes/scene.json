@@ -99,7 +99,7 @@
       "tag": "Enemy",
       "active": true,
       "speed": 40.0,
-      "health": 10000.0,
+      "health": 15.0,
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
@@ -154,7 +154,7 @@
       "prototype": true,
       "tag": "Enemy",
       "active": true,
-      "speed": 40.0,
+      "speed": 15.0,
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
@@ -192,7 +192,7 @@
       "tag": "Damage",
       "active": true,
       "lifespan": 0.1,
-      "damage": 5,
+      "damage": 1.0,
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
@@ -202,7 +202,7 @@
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/damager.png",
-          "active": false
+          "active": true
         },
         {
           "type": "Box2DPhysicsComponent",

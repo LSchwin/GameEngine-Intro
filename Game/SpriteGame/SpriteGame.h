@@ -41,7 +41,6 @@ private:
 
 private:
 	int m_score{ 0 };
-	int m_lives{ 0 };
 
 	float m_stateTimer = 5.0f;
 	float m_spawnTimer = 0.0f;

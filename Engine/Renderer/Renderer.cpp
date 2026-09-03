@@ -128,7 +128,7 @@ namespace nu
         Vector2 size = texture.GetSize();
 
         float cameraX = (m_cameraEnabled) ? (m_camera.x - m_width * 0.5f) : 0.0f;
-        float cameraY = (m_cameraEnabled) ? (m_camera.y - m_height * 0.5f) : 0.0f;
+        float cameraY = (m_cameraEnabled) ? (m_camera.y - m_height * 0.6f) : 0.0f;
 
         SDL_FRect destRect;
         destRect.w = size.x * scale;
@@ -144,7 +144,7 @@ namespace nu
     void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH, const Vector2& origin, float offset) const
     {
         float cameraX = (m_cameraEnabled) ? (m_camera.x - m_width * 0.5f) : 0.0f;
-        float cameraY = (m_cameraEnabled) ? (m_camera.y - m_height * 0.5f) : 0.0f;
+        float cameraY = (m_cameraEnabled) ? (m_camera.y - m_height * 0.6f) : 0.0f;
 
         //Celastrina Version
         SDL_FRect sourceRect;

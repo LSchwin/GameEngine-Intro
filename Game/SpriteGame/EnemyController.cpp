@@ -37,6 +37,13 @@ void EnemyController::Update(float dt)
 			if (playerPosition.x < position.x) dir = -1.0f;
 			else dir = +1.0f;
 
+
+			if (position.Distance(playerPosition) < 200.0f)
+			{
+				m_state = State::Attack;
+				m_rendererComponent->Play("attack");
+			}
+
 		}
 
 		if (dir != 0)
@@ -51,12 +58,22 @@ void EnemyController::Update(float dt)
 		}
 
 		m_rendererComponent->SetFlipH(m_dir < 0);
-
-
-
 	}
 		break;
 	case CharacterBase::State::Attack:
+		if (m_rendererComponent->IsAnimationDone())
+		{
+			m_state = State::Move;
+			m_rendererComponent->Play("idle");
+
+			auto damager = nu::Factory::Instance().Create<Damager>("DamagerPrototype");
+			damager->SetPosition(GetTransform().position + nu::Vector2{ 50.0f * m_dir, 0.0f });
+			damager->SetTag("EnemyDamager");
+			damager->SetScale(2.0f);
+			damager->SetDirection(m_dir);
+			m_scene->AddActor(std::move(damager));
+		}
+
 		break;
 	case CharacterBase::State::Hit:
 		if (m_rendererComponent->IsAnimationDone())
@@ -89,13 +106,19 @@ void EnemyController::OnCollision(nu::Actor* other)
 {
 	if (nu::EqualsIgnoreCase(other->GetTag(), "PlayerDamager"))
 	{
-		std::cout << "hit!" << std::endl;
+		//std::cout << "hit!" << std::endl;
 
 		m_state = State::Hit;
 		m_rendererComponent->Play("hit");
+		nu::Engine::Get().GetAudio().PlaySound("swordHit");
+
 		m_health -= 1.0f;
 		Damager* damager = dynamic_cast<Damager*>(other);
-		if (damager) m_health -= damager->GetDamage();
+		if (damager)
+		{
+			AddPercent(damager->GetDamage());
+			m_physicsComponent->SetVelocity(nu::Vector2{ 100.0f * GetPercent() * damager->GetDirection(), 50.0f * GetPercent() });
+		}
 
 		other->SetDestroyed();
 

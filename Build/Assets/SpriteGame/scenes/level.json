@@ -15,7 +15,26 @@
       "components": [
         {
           "type": "TilemapRendererComponent",
-          "tilemap_name": "tilemaps/world.json"
+          "tilemap_name": "tilemaps/worldOLD.json"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "prototype": false,
+      "name": "Tilemap",
+      "tag": "Death",
+      "active": true,
+      "persistent": false,
+      "transform": {
+        "position": [ 0.0, 0.0 ],
+        "rotation": 0.0,
+        "scale": 3.0
+      },
+      "components": [
+        {
+          "type": "TilemapRendererComponent",
+          "tilemap_name": "tilemaps/world_death.tmj"
         }
       ]
     },

@@ -187,6 +187,7 @@
     <None Include="..\Build\Assets\SpriteGame\scenes\level.json" />
     <None Include="..\Build\Assets\SpriteGame\scenes\scene.json" />
     <None Include="..\Build\Assets\SpriteGame\tilemaps\world.json" />
+    <None Include="..\Build\Assets\SpriteGame\tilemaps\worldOLD.json" />
     <None Include="..\Build\Assets\tilemaps\world.json" />
   </ItemGroup>
   <ItemGroup>

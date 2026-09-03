@@ -20,7 +20,7 @@ bool SpriteGame::Initialize()
     m_scene->Load("scenes/scene.json");
     
     Engine::Get().GetAudio().AddSound("laser", "audio/laser.wav"); //add some more sounds later
-    Engine::Get().GetAudio().AddSound("bomb", "audio/Blaster.wav"); //add some more sounds later
+    Engine::Get().GetAudio().AddSound("swordHit", "audio/Blaster.wav"); //add some more sounds later
     Engine::Get().GetAudio().AddSound("BombExplode", "audio/BombExplode.wav"); //add some more sounds later
     Engine::Get().GetAudio().AddLoopSound("MusicLoop", "audio/LoopedMusic.mp3"); 
     
@@ -50,7 +50,6 @@ void SpriteGame::Update(float dt)
         break;
     case GameState::StartGame:
         m_score = 0;
-        m_lives = 3;
         m_spawnTimerMin = 2.0f;
         m_spawnTimerMax = 3.0f;
         m_spawnTimer = 3.0f;
@@ -98,7 +97,7 @@ void SpriteGame::Draw(nu::Renderer& renderer)
 {
     renderer.EnableCamera(false);
 
-    renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/bg03.png", renderer), 600.0f, 600.0f, 0.0f, 10.0f);
+    renderer.DrawTexture(*nu::Resources().Get<Texture>("textures/background.png", renderer), 970.0f, 520.0f, 0.0f, 1.0f);
     
     switch (m_gameState)
     {
@@ -108,15 +107,21 @@ void SpriteGame::Draw(nu::Renderer& renderer)
     case GameState::StartGame:
     case GameState::StartLevel:
     case GameState::Game:
-        // draw score / lives
+    {
+        // draw score / percent
         m_scoreText->Create(renderer, "Score: " + std::to_string(m_score), { 1.0f, 1.0f, 1.0f });
         m_scoreText->Draw(renderer, 30, 30);
-    
-        m_livesText->Create(renderer, "Lives: " + std::to_string(m_lives), { 1.0f, 1.0f, 1.0f });
-        m_livesText->Draw(renderer, (float)renderer.GetWidth() - 150, 100);
-    
+
+        auto player = m_scene->GetActorByName<PlayerController>("PlayerPrototype");
+        if (player)
+        {
+            m_livesText->Create(renderer, "Percent: " + std::to_string(player->GetPercent()), { 1.0f, 1.0f, 1.0f });
+            m_livesText->Draw(renderer, (float)renderer.GetWidth() - 320, 100);
+        }
+
         m_enemyText->Create(renderer, "Next Wave: " + std::to_string(m_spawnTimer), { 1.0f, 1.0f, 1.0f });
         m_enemyText->Draw(renderer, (float)renderer.GetWidth() - 350, 30);
+    }
         break;
     case GameState::GameOver:
         break;
@@ -146,9 +151,6 @@ void SpriteGame::SpawnEnemy()
 
 void SpriteGame::onPlayerDead()
 {
-    //m_lives--;
-    //m_gameState = (m_lives <= 0) ? GameState::GameOver : GameState::StartLevel;
-    //
-    //m_stateTimer = 3.0f;
+    SpawnPlayer();
 }
 

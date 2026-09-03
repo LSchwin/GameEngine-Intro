@@ -32,7 +32,7 @@ void FlyingEnemyController::Update(float dt)
 		
 
 		nu::Vector2 direction = playerPosition - position;
-		m_physicsComponent->ApplyForce(direction.Normalized() * 50.0f);
+		m_physicsComponent->SetVelocity(direction.Normalized() * 5.0f);
 
 	}
 
