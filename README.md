@@ -15,6 +15,8 @@
 
   Second is knockback-focused wave survival game, where you must knock enemies into the void before you yourself feed it!
 
+<img width="953" height="528" alt="Screenshot 2026-09-03 124622" src="https://github.com/user-attachments/assets/f13298bd-b9e1-4aff-a3c2-acace54419b4" />
+
 SpriteGame CONTROLS
 -------------------
 A, D : Move left and right respectively
@@ -22,6 +24,8 @@ A, D : Move left and right respectively
 Spacebar : Jump
 
 Left-Click : Sword Attack (Click Multiple times in succession to unleash a powerful 3-hit combo!)
+
+Escape : Close the program
 
 SpriteGame CREDITS
 ------------------
