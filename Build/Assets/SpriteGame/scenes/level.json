@@ -15,7 +15,8 @@
       "components": [
         {
           "type": "TilemapRendererComponent",
-          "tilemap_name": "tilemaps/worldOLD.json"
+          "active": true,
+          "tilemap_name": "tilemaps/world.json"
         }
       ]
     },
@@ -34,6 +35,7 @@
       "components": [
         {
           "type": "TilemapRendererComponent",
+          "active": false,
           "tilemap_name": "tilemaps/world_death.tmj"
         }
       ]

@@ -11,20 +11,40 @@
             "scaleInDock": 1,
             "scaleInEditor": 3
         },
+        "test.tmj": {
+            "scale": 1.577,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239.6956246036779,
+                "y": 399.8097653772987
+            }
+        },
+        "tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
         "world.json": {
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 201.66666666666666,
-                "y": 176.33333333333331
+                "x": 381.5,
+                "y": 180.5
+            }
+        },
+        "worldOLD.json": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 315.66666666666663,
+                "y": 152.33333333333331
             }
         },
         "world_death.tmj": {
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 266.3333333333333,
-                "y": 395
+                "x": 241.66666666666666,
+                "y": 393
             }
         }
     },
@@ -32,6 +52,7 @@
     "last.imagePath": "C:/Neumont/Q4/IntroToGameProgramming/GameEngine/Build/Assets/SpriteGame/textures",
     "map.height": 50,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "json",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
@@ -39,12 +60,15 @@
         "world.json"
     ],
     "project": "world.tiled-project",
-    "property.type": "string",
+    "property.type": "bool",
     "recentFiles": [
+        "world.json",
+        "tileset.tsx",
+        "test.tmj",
+        "worldOLD.json",
         "ground.tsx",
         "cyber_tileset.tsx",
-        "world_death.tmj",
-        "world.json"
+        "world_death.tmj"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

@@ -3,6 +3,7 @@
 #include "Components/SpriteAnimatorRendererComponent.h"
 #include "Engine/Engine.h"
 #include "Damager.h"
+#include "SpriteGame.h"
 
 FACTORY_REGISTER(EnemyController)
 
@@ -67,7 +68,7 @@ void EnemyController::Update(float dt)
 			m_rendererComponent->Play("idle");
 
 			auto damager = nu::Factory::Instance().Create<Damager>("DamagerPrototype");
-			damager->SetPosition(GetTransform().position + nu::Vector2{ 50.0f * m_dir, 0.0f });
+			damager->SetPosition(GetTransform().position + nu::Vector2{ 100.0f * m_dir, 0.0f });
 			damager->SetTag("EnemyDamager");
 			damager->SetScale(2.0f);
 			damager->SetDirection(m_dir);
@@ -87,6 +88,7 @@ void EnemyController::Update(float dt)
 		//m_rendererComponent->Play("death"); //this is where I'd put my death animation... IF I HAD ONEEE
 		if (m_rendererComponent->IsAnimationDone())
 		{
+			((SpriteGame*)(m_scene->GetGame()))->AddPoints(100);
 			SetDestroyed();
 		}
 	}
@@ -127,7 +129,12 @@ void EnemyController::OnCollision(nu::Actor* other)
 			m_state = State::Death;
 		}
 	}
+	else if (nu::EqualsIgnoreCase(other->GetTag(), "Death"))
+	{
+		m_state = State::Death;
+	}
 }
+
 
 void EnemyController::Read(const nu::json::value_t& value)
 {

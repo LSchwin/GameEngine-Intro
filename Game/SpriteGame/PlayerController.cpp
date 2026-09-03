@@ -3,6 +3,7 @@
 #include "Components/SpriteAnimatorRendererComponent.h"
 #include "Engine/Engine.h"
 #include "Damager.h"
+#include "SpriteGame.h"
 
 FACTORY_REGISTER(PlayerController)
 
@@ -89,7 +90,10 @@ void PlayerController::Update(float dt)
 
 		break;
 	case CharacterBase::State::Death:
-
+	{
+		((SpriteGame*)(m_scene->GetGame()))->onPlayerDead();
+		SetDestroyed();
+	}
 		break;
 	default:
 
@@ -118,6 +122,7 @@ void PlayerController::OnCollision(nu::Actor* other)
 			AddPercent(damager->GetDamage());
 			m_physicsComponent->SetVelocity(nu::Vector2{ 100.0f * GetPercent() * damager->GetDirection(), 500.0f });
 		}
+		m_grounded = false;
 	}
 	else if (other->GetTag() == "Ground")
 	{

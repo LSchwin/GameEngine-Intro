@@ -162,7 +162,7 @@ namespace nu
 
 
         //https://wiki.libsdl.org/SDL3/SDL_RenderTexture
-        SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST); //this line was the only change
+        //SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST); //this line was the only change
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, flipH ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
 }

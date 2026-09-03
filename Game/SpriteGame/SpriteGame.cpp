@@ -21,8 +21,7 @@ bool SpriteGame::Initialize()
     
     Engine::Get().GetAudio().AddSound("laser", "audio/laser.wav"); //add some more sounds later
     Engine::Get().GetAudio().AddSound("swordHit", "audio/Blaster.wav"); //add some more sounds later
-    Engine::Get().GetAudio().AddSound("BombExplode", "audio/BombExplode.wav"); //add some more sounds later
-    Engine::Get().GetAudio().AddLoopSound("MusicLoop", "audio/LoopedMusic.mp3"); 
+    Engine::Get().GetAudio().AddLoopSound("MusicLoop", "audio/snd_music1.mp3"); 
     
     nu::Engine::Get().GetAudio().PlaySound("MusicLoop");
     
@@ -151,6 +150,7 @@ void SpriteGame::SpawnEnemy()
 
 void SpriteGame::onPlayerDead()
 {
-    SpawnPlayer();
+    //SpawnPlayer();
+    m_gameState = GameState::GameOver;
 }
 
