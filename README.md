@@ -23,7 +23,17 @@ Left-Click : Sword Attack (Click Multiple times in succession to unleash a power
 SpriteGame CREDITS
 ------------------
 Player Art: https://pixramen.itch.io/2d-action-platformer-sci-fi-vagabond
+
 Music: Made by https://soundcloud.com/string_cheese
+
 Background: https://seeone.itch.io/dead-city-bg
+
 Tileset: https://wibuka.itch.io/tileset-pixel-16x16
 
+TOOLS USED 
+----------
+Visual Studio 2022
+
+https://pippi-32003.web.app/
+
+https://spritemaster.pages.dev/
