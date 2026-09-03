@@ -26,7 +26,7 @@ namespace nu
 		}
 
 		// set tile transform current owner (actor) transform
-		Transform transform = GetOwner()->GetTransform();
+		Transform transform = GetOwner()->GetTransform(); //test
 
 		// define physics bodies
 		PhysicsBody::PhysicsBodyDef bodyDef;
